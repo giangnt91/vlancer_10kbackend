@@ -103,6 +103,7 @@
                                     <tr>
                                         <th>ID Thành Viên</th>
                                         <th>Họ Tên</th>
+                                        <th>Shop</th>
                                         <th hidden>User Email</th>
                                         <th>Hạng</th>
                                         <th>Điểm Xấu</th>
@@ -116,6 +117,7 @@
                                     <tr ng-repeat="content in all_user | orderBy:'-_id'">
                                         <td ng-click="copyToClipboard(content.user_id)" id="toast-custom">{{content.user_id}}</td>
                                         <td>{{content.info[0].fulname}}</td>
+                                        <td>{{content.role[0].shopname}}</td>
                                         <td hidden>{{content.info[0].email}}</td>
                                         <td>{{content.user_class[0].name}}</td>
                                         <td>{{content.point_bad}}</td>
