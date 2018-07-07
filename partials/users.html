@@ -117,7 +117,7 @@
                                     <tr ng-repeat="content in all_user | orderBy:'-_id'">
                                         <td ng-click="copyToClipboard(content.user_id)" id="toast-custom">{{content.user_id}}</td>
                                         <td>{{content.info[0].fulname}}</td>
-                                        <td>{{content.role[0].shopname}}</td>
+                                        <td>{{content.role[0].shop_name}}</td>
                                         <td hidden>{{content.info[0].email}}</td>
                                         <td>{{content.user_class[0].name}}</td>
                                         <td>{{content.point_bad}}</td>
