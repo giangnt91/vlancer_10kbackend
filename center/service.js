@@ -121,7 +121,7 @@ angular.module('AdminService', [])
                 } else {
                     img_vip = null;
                 }
-                
+
                 img.push({
                     avatar: shop_id + '-avatar.' + avatar_ex,
                     cover: shop_id + '-cover.' + cover_ex,
@@ -142,6 +142,21 @@ angular.module('AdminService', [])
                 fd.append('avatar', avatar);
                 img.push({
                     avatar: shopId + '-avatar.' + avatar_ex,
+                })
+
+                fd.append('img', JSON.stringify(img));
+                url = api_gateway_url + '/avatar';
+                return $http.post(url, fd, _header);
+            },
+            Uvip: function(shopId, vip){
+                var fd = new FormData();
+                var img = [];
+                var vip_ex = vip.name.substr(vip.name.lastIndexOf('.') + 1);
+
+                fd.append('shopId', shopId);
+                fd.append('avatar', vip);
+                img.push({
+                    vip: shopId + '-avatar.' + vip_ex,
                 })
 
                 fd.append('img', JSON.stringify(img));

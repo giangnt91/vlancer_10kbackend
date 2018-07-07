@@ -281,11 +281,20 @@ coupon
             $scope.avatar = $files;
         }
 
+        $scope.get_vip = function ($files) {
+            $scope.vip = $files;
+        }
+
         // update info
         $scope.update = function (data) {
             if (data !== undefined && data !== null) {
 
                 // update image
+                if($scope.vip !== undefined){
+                    if($scope.vip.length !== 0){
+                        DataApi.uVip(data.shopId, $scope.vip[0]).then(function(response){});
+                    }
+                }
                 if ($scope.avatar !== undefined) {
                     if ($scope.avatar.length !== 0) {
                         // update avatar appi
