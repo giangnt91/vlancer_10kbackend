@@ -195,10 +195,8 @@ coupon
 
         $scope.c_cuopon = function (data) {
             var date = new Date();
-           var theday = $filter('date')(date, "dd");
-            console.log(theday)
             var _m = date.getMonth();
-            var _d = date.getDate();
+            var _d = $filter('date')(date, "dd");
             var _y = date.getFullYear();
             if (parseInt($scope.enday) !== 1) {
                 if (_m + parseInt($scope.enday) >= 12) {
@@ -233,179 +231,179 @@ coupon
             // var enday = $('#enday').val();
             var all_coupon = [];
 
-            // if (data !== undefined && data !== null) {
-            //     if ($scope.auth[0].role[0].id === 1) {
-            //         $scope.shop_avatar = $scope.selected_shop.shop_info[0].shop_avatar;
-            //         $scope.shop_cover = $scope.selected_shop.shop_info[0].shop_cover;
-            //         $scope.name_shop = $scope.selected_shop.shop_info[0].shop_name;
-            //     }
+            if (data !== undefined && data !== null) {
+                if ($scope.auth[0].role[0].id === 1) {
+                    $scope.shop_avatar = $scope.selected_shop.shop_info[0].shop_avatar;
+                    $scope.shop_cover = $scope.selected_shop.shop_info[0].shop_cover;
+                    $scope.name_shop = $scope.selected_shop.shop_info[0].shop_name;
+                }
 
-            //     if ($scope.auth[0].role[0].id === 2) {
-            //         if (data.class === "" || data.value === undefined || data.value === "" || data.quantity === undefined || data.quantity === "" || data.info === undefined || data.info === "" || $scope.enday === "") {
-            //             window.scrollTo(0, 0);
-            //             $scope.error = true;
-            //         } else {
-            //             // set value class
-            //             if (data.class === "1") {
-            //                 _class = [{
-            //                     id: 1,
-            //                     name: "Bạch Kim"
-            //                 }]
-            //             } else if (data.class === "2") {
-            //                 _class = [{
-            //                     id: 2,
-            //                     name: "Vàng"
-            //                 }]
-            //             } else if (data.class === "3") {
-            //                 _class = [{
-            //                     id: 3,
-            //                     name: "Bạc"
-            //                 }]
-            //             } else if (data.class === "4") {
-            //                 _class = [{
-            //                     id: 4,
-            //                     name: "Thường"
-            //                 }]
-            //             }
+                if ($scope.auth[0].role[0].id === 2) {
+                    if (data.class === "" || data.value === undefined || data.value === "" || data.quantity === undefined || data.quantity === "" || data.info === undefined || data.info === "" || $scope.enday === "") {
+                        window.scrollTo(0, 0);
+                        $scope.error = true;
+                    } else {
+                        // set value class
+                        if (data.class === "1") {
+                            _class = [{
+                                id: 1,
+                                name: "Bạch Kim"
+                            }]
+                        } else if (data.class === "2") {
+                            _class = [{
+                                id: 2,
+                                name: "Vàng"
+                            }]
+                        } else if (data.class === "3") {
+                            _class = [{
+                                id: 3,
+                                name: "Bạc"
+                            }]
+                        } else if (data.class === "4") {
+                            _class = [{
+                                id: 4,
+                                name: "Thường"
+                            }]
+                        }
 
-            //             _the_issuer = [{
-            //                 id: $scope.shop_detail_id,
-            //                 name: $scope.name_shop
-            //             }]
+                        _the_issuer = [{
+                            id: $scope.shop_detail_id,
+                            name: $scope.name_shop
+                        }]
 
-            //             _status_coupon = [{
-            //                 id: 1,
-            //                 status: "Còn hạn và chưa sử dụng"
-            //             }]
+                        _status_coupon = [{
+                            id: 1,
+                            status: "Còn hạn và chưa sử dụng"
+                        }]
 
-            //             var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
-            //             // get shop id and shop name
-            //             for (let i = 0; i < data.quantity; i++) {
-            //                 _coupon = {
-            //                     _id: md5.createHash(new Date().toLocaleString() + i),
-            //                     shop_name: $scope.name_shop,
-            //                     shop_avatar: $scope.shop_avatar,
-            //                     shop_cover: $scope.shop_cover,
-            //                     shop_id: $scope.shop_detail_id,
-            //                     coupon_info: _info,
-            //                     value: data.value,
-            //                     class_user: _class,
-            //                     release_day: $scope._today,
-            //                     time_expire: $scope.enday,
-            //                     limit_time: $scope._limit,
-            //                     the_issuer: _the_issuer,
-            //                     status_coupon: _status_coupon,
-            //                     userid_get_coupon: "",
-            //                     time_user_get: null,
-            //                     time_user_use: null,
-            //                     rating: 0,
-            //                     rfeedback: $scope.rfeedback,
-            //                     feedback: "",
-            //                     approved: "pending"
-            //                 }
-            //                 all_coupon.push(_coupon);
-            //             }
+                        var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                        // get shop id and shop name
+                        for (let i = 0; i < data.quantity; i++) {
+                            _coupon = {
+                                _id: md5.createHash(new Date().toLocaleString() + i),
+                                shop_name: $scope.name_shop,
+                                shop_avatar: $scope.shop_avatar,
+                                shop_cover: $scope.shop_cover,
+                                shop_id: $scope.shop_detail_id,
+                                coupon_info: _info,
+                                value: data.value,
+                                class_user: _class,
+                                release_day: $scope._today,
+                                time_expire: $scope.enday,
+                                limit_time: $scope._limit,
+                                the_issuer: _the_issuer,
+                                status_coupon: _status_coupon,
+                                userid_get_coupon: "",
+                                time_user_get: null,
+                                time_user_use: null,
+                                rating: 0,
+                                rfeedback: $scope.rfeedback,
+                                feedback: "",
+                                approved: "pending"
+                            }
+                            all_coupon.push(_coupon);
+                        }
 
-            //             var the_new_coupon = [{
-            //                 approved: "pending",
-            //                 coupon: all_coupon
-            //             }]
+                        var the_new_coupon = [{
+                            approved: "pending",
+                            coupon: all_coupon
+                        }]
 
-            //             DataApi.ServerCreateC($scope._id_shop, JSON.stringify(the_new_coupon), 2).then(function (response) {
-            //                 if (response.data.error_code === 0) {
-            //                     Thesocket.emit('shop_create_new_coupon');
-            //                     $timeout(function () {
-            //                         $scope.ok = true;
-            //                     }, 1500)
-            //                 }
-            //             })
+                        DataApi.ServerCreateC($scope._id_shop, JSON.stringify(the_new_coupon), 2).then(function (response) {
+                            if (response.data.error_code === 0) {
+                                Thesocket.emit('shop_create_new_coupon');
+                                $timeout(function () {
+                                    $scope.ok = true;
+                                }, 1500)
+                            }
+                        })
 
-            //         }
-            //     } else {
-            //         if ($scope.selected_shop === undefined || data.class === undefined || data.class === "" || data.value === undefined || data.value === "" || data.quantity === undefined || data.quantity === "" || data.info === undefined || data.info === "" || $scope.enday === "") {
-            //             window.scrollTo(0, 0);
-            //             $scope.error = true;
-            //         } else {
+                    }
+                } else {
+                    if ($scope.selected_shop === undefined || data.class === undefined || data.class === "" || data.value === undefined || data.value === "" || data.quantity === undefined || data.quantity === "" || data.info === undefined || data.info === "" || $scope.enday === "") {
+                        window.scrollTo(0, 0);
+                        $scope.error = true;
+                    } else {
 
-            //             // set value class
-            //             if (data.class === "1") {
-            //                 _class = [{
-            //                     id: 1,
-            //                     name: "Bạch Kim"
-            //                 }]
-            //             } else if (data.class === "2") {
-            //                 _class = [{
-            //                     id: 2,
-            //                     name: "Vàng"
-            //                 }]
-            //             } else if (data.class === "3") {
-            //                 _class = [{
-            //                     id: 3,
-            //                     name: "Bạc"
-            //                 }]
-            //             } else if (data.class === "4") {
-            //                 _class = [{
-            //                     id: 4,
-            //                     name: "Thường"
-            //                 }]
-            //             }
+                        // set value class
+                        if (data.class === "1") {
+                            _class = [{
+                                id: 1,
+                                name: "Bạch Kim"
+                            }]
+                        } else if (data.class === "2") {
+                            _class = [{
+                                id: 2,
+                                name: "Vàng"
+                            }]
+                        } else if (data.class === "3") {
+                            _class = [{
+                                id: 3,
+                                name: "Bạc"
+                            }]
+                        } else if (data.class === "4") {
+                            _class = [{
+                                id: 4,
+                                name: "Thường"
+                            }]
+                        }
 
-            //             _the_issuer = [{
-            //                 id: 1,
-            //                 name: "Server"
-            //             }]
+                        _the_issuer = [{
+                            id: 1,
+                            name: "Server"
+                        }]
 
-            //             _status_coupon = [{
-            //                 id: 1,
-            //                 status: "Còn hạn và chưa sử dụng"
-            //             }]
+                        _status_coupon = [{
+                            id: 1,
+                            status: "Còn hạn và chưa sử dụng"
+                        }]
 
-            //             var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
-            //             // get shop id and shop name
-            //             for (let i = 0; i < data.quantity; i++) {
-            //                 _coupon = {
-            //                     _id: md5.createHash(new Date().toLocaleString() + i),
-            //                     shop_id: $scope.selected_shop.shopId,
-            //                     shop_name: $scope.name_shop,
-            //                     shop_avatar: $scope.shop_avatar,
-            //                     shop_cover: $scope.shop_cover,
-            //                     coupon_info: _info,
-            //                     value: data.value,
-            //                     class_user: _class,
-            //                     release_day: $scope._today,
-            //                     time_expire: $scope.enday,
-            //                     limit_time: $scope._limit,
-            //                     the_issuer: _the_issuer,
-            //                     status_coupon: _status_coupon,
-            //                     userid_get_coupon: "",
-            //                     time_user_get: null,
-            //                     time_user_use: null,
-            //                     rating: 0,
-            //                     rfeedback: $scope.rfeedback,
-            //                     feedback: "",
-            //                     approved: true
-            //                 }
-            //                 all_coupon.push(_coupon);
-            //             }
+                        var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                        // get shop id and shop name
+                        for (let i = 0; i < data.quantity; i++) {
+                            _coupon = {
+                                _id: md5.createHash(new Date().toLocaleString() + i),
+                                shop_id: $scope.selected_shop.shopId,
+                                shop_name: $scope.name_shop,
+                                shop_avatar: $scope.shop_avatar,
+                                shop_cover: $scope.shop_cover,
+                                coupon_info: _info,
+                                value: data.value,
+                                class_user: _class,
+                                release_day: $scope._today,
+                                time_expire: $scope.enday,
+                                limit_time: $scope._limit,
+                                the_issuer: _the_issuer,
+                                status_coupon: _status_coupon,
+                                userid_get_coupon: "",
+                                time_user_get: null,
+                                time_user_use: null,
+                                rating: 0,
+                                rfeedback: $scope.rfeedback,
+                                feedback: "",
+                                approved: true
+                            }
+                            all_coupon.push(_coupon);
+                        }
 
-            //             var the_new_coupon = [{
-            //                 approved: true,
-            //                 coupon: all_coupon
-            //             }]
-            //             DataApi.ServerCreateC($scope.selected_shop._id, JSON.stringify(the_new_coupon), 1).then(function (response) {
-            //                 if (response.data.error_code === 0) {
-            //                     $timeout(function () {
-            //                         $scope.ok = true;
-            //                     }, 1500)
-            //                 }
-            //             })
+                        var the_new_coupon = [{
+                            approved: true,
+                            coupon: all_coupon
+                        }]
+                        DataApi.ServerCreateC($scope.selected_shop._id, JSON.stringify(the_new_coupon), 1).then(function (response) {
+                            if (response.data.error_code === 0) {
+                                $timeout(function () {
+                                    $scope.ok = true;
+                                }, 1500)
+                            }
+                        })
 
-            //         }
-            //     }
+                    }
+                }
 
-            // } else {
-            //     window.scrollTo(0, 0);
-            //     $scope.error = true;
-            // }
+            } else {
+                window.scrollTo(0, 0);
+                $scope.error = true;
+            }
         }
     })
