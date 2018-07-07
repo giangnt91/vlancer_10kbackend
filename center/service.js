@@ -148,7 +148,7 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/avatar';
                 return $http.post(url, fd, _header);
             },
-            Uvip: function(shopId, vip){
+            uVip: function(shopId, vip){
                 var fd = new FormData();
                 var img = [];
                 var vip_ex = vip.name.substr(vip.name.lastIndexOf('.') + 1);
