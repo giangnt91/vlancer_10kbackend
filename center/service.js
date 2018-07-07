@@ -104,13 +104,6 @@ angular.module('AdminService', [])
                 var _album = [];
                 var avatar_ex = avatar.name.substr(avatar.name.lastIndexOf('.') + 1);
                 var cover_ex = cover.name.substr(cover.name.lastIndexOf('.') + 1);
-                if (vip !== null) {
-                    var vip_ex = vip.name.substr(vip.name.lastIndexOf('.') + 1);
-                    fd.append('vip', vip);
-                    img_vip = shop_id + '-vip.' + vip_ex;
-                } else {
-                    img_vip = null;
-                }
 
                 fd.append('shopId', shop_id);
                 fd.append('avatar', avatar);
@@ -120,6 +113,15 @@ angular.module('AdminService', [])
                     fd.append("album" + (i + 1), album[i]);
                     _album.push(shop_id + '-album' + (i + 1) + '.' + album[i].name.substr(album[i].name.lastIndexOf('.') + 1));
                 }
+
+                if (vip !== null) {
+                    var vip_ex = vip.name.substr(vip.name.lastIndexOf('.') + 1);
+                    fd.append('vip', vip);
+                    img_vip = shop_id + '-vip.' + vip_ex;
+                } else {
+                    img_vip = null;
+                }
+                
                 img.push({
                     avatar: shop_id + '-avatar.' + avatar_ex,
                     cover: shop_id + '-cover.' + cover_ex,
