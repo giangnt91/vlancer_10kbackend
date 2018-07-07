@@ -102,7 +102,6 @@ angular.module('AdminService', [])
                 var fd = new FormData();
                 var img = [];
                 var _album = [];
-                var vip = [];
                 var avatar_ex = avatar.name.substr(avatar.name.lastIndexOf('.') + 1);
                 var cover_ex = cover.name.substr(cover.name.lastIndexOf('.') + 1);
                 if (vip !== null) {
