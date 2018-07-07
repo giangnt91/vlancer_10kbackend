@@ -97,17 +97,26 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/delac';
                 return $http.post(url, parameter, header);
             },
-            uploadImg: function (shop_id, avatar, cover, album) {
+            uploadImg: function (shop_id, avatar, cover, album, vip) {
 
                 var fd = new FormData();
                 var img = [];
                 var _album = [];
+                var vip = [];
                 var avatar_ex = avatar.name.substr(avatar.name.lastIndexOf('.') + 1);
                 var cover_ex = cover.name.substr(cover.name.lastIndexOf('.') + 1);
+                if (vip !== null) {
+                    var vip_ex = vip.name.substr(vip.name.lastIndexOf('.') + 1);
+                    fd.append('vip', vip);
+                    img_vip = shop_id + '-vip.' + vip_ex;
+                } else {
+                    img_vip = null;
+                }
 
                 fd.append('shopId', shop_id);
                 fd.append('avatar', avatar);
                 fd.append('cover', cover);
+
                 for (let i = 0; i < album.length; i++) {
                     fd.append("album" + (i + 1), album[i]);
                     _album.push(shop_id + '-album' + (i + 1) + '.' + album[i].name.substr(album[i].name.lastIndexOf('.') + 1));
@@ -115,7 +124,8 @@ angular.module('AdminService', [])
                 img.push({
                     avatar: shop_id + '-avatar.' + avatar_ex,
                     cover: shop_id + '-cover.' + cover_ex,
-                    album: _album
+                    album: _album,
+                    vip: img_vip
                 })
 
                 fd.append('img', JSON.stringify(img));
@@ -252,7 +262,7 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/updatebasic';
                 return $http.post(url, parameter, header);
             },
-            removebasic: function(_id){
+            removebasic: function (_id) {
                 parameter = JSON.stringify({
                     _id: _id
                 });

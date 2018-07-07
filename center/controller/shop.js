@@ -136,6 +136,10 @@ coupon
             $scope.avatar = $files;
         }
 
+        $scope.get_vip = function ($files) {
+            $scope.vip = $files;
+        }
+
         $scope.create_shop = function (data) {
             var _kind;
             if (data !== undefined && data !== null && $scope.avatar !== undefined && $scope.avatar.length !== 0 && $scope.cover !== undefined && $scope.cover.length !== 0 && $scope.all_file.length !== 0) {
@@ -152,6 +156,7 @@ coupon
                     $scope.avatar === undefined || $scope.avatar.length === 0 ||
                     $scope.cover === undefined || $scope.avatar.length === 0 ||
                     $scope.all_file.length === 0
+                    // $scope.vip === undefined || $scope.vip.length === 0
                 ) {
                     $scope.the_error = true;
                     $scope.error = true;
@@ -192,19 +197,25 @@ coupon
                         info: data.info,
                         shop_avatar: "",
                         shop_cover: "",
-                        shop_album: []
+                        shop_album: [],
+                        shop_vip: null
                     }];
 
                     shop_rank = [{
                         id: 0,
                         name: "Thường"
                     }]
+                    if($scope.vip === undefined || $scope.vip.length === 0){
+                        the_vip = null;
+                    }else{
+                        the_vip = $scope.vip[0];
+                    }
 
                     DataApi.createShop(data.shopid, data.boss, $scope.manager, JSON.stringify(_status), JSON.stringify(shop_rank), JSON.stringify(shop_info)).then(function (response) {
                         if (response.data.error_code === 0) {
                             $scope.the_error = false;
                             $timeout(function () {
-                                DataApi.uploadImg(data.shopid, $scope.avatar[0], $scope.cover[0], $scope.all_file).then(function (response) {
+                                DataApi.uploadImg(data.shopid, $scope.avatar[0], $scope.cover[0], $scope.all_file, the_vip).then(function (response) {
                                     if (response.data.error_code === 0) {
                                         $timeout(function () {
                                             $scope.ok = true;
