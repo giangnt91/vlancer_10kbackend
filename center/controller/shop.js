@@ -141,6 +141,8 @@ coupon
         }
 
         $scope.create_shop = function (data) {
+            console.log($scope.vip);
+
             var _kind;
             if (data !== undefined && data !== null && $scope.avatar !== undefined && $scope.avatar.length !== 0 && $scope.cover !== undefined && $scope.cover.length !== 0 && $scope.all_file.length !== 0) {
                 if (
