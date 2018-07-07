@@ -154,13 +154,13 @@ angular.module('AdminService', [])
                 var vip_ex = vip.name.substr(vip.name.lastIndexOf('.') + 1);
 
                 fd.append('shopId', shopId);
-                fd.append('avatar', vip);
+                fd.append('vip', vip);
                 img.push({
-                    vip: shopId + '-avatar.' + vip_ex,
+                    vip: shopId + '-vip.' + vip_ex,
                 })
 
                 fd.append('img', JSON.stringify(img));
-                url = api_gateway_url + '/avatar';
+                url = api_gateway_url + '/imgvip';
                 return $http.post(url, fd, _header);
             },
             uCover: function (shopId, cover) {
