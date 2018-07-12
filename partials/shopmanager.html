@@ -1,0 +1,252 @@
+<!-- BEGIN BASE-->
+<div id="base">
+    <!-- BEGIN CONTENT-->
+    <div id="content">
+
+        <!-- BEGIN PROFILE HEADER -->
+        <section class="full-bleed">
+            <div class="section-body style-default-dark force-padding text-shadow">
+                <div class="img-backdrop" style="background-image: url('{{shop_detail[0].shop_info[0].shop_cover}}')"></div>
+                <div class="overlay overlay-shade-top stick-top-left height-3"></div>
+                <div class="row">
+                    <!-- data-toggle="modal" data-target="#detail" -->
+                    <a href="">
+                        <div class="col-md-3 col-xs-5 text-white">
+                            <img class="img-circle img-responsive" src="{{shop_detail[0].shop_info[0].shop_avatar}}" alt="" />
+                            <h3>{{shop_detail[0].shop_info[0].shop_name}}
+                                <br/>
+                                <small style="color:#fff">{{shop_detail[0].shop_info[0].service}}</small>
+                            </h3>
+                        </div>
+                    </a>
+
+                    <!--end .col -->
+                    <!--end .col -->
+                </div>
+                <!--end .row -->
+                <div class="overlay overlay-shade-bottom stick-bottom-left force-padding text-right">
+                    <div class="width-3 text-center pull-right">
+                        <strong class="text-xl">
+                            <i class="md md-thumb-up"></i>
+                            {{shop_detail[0].user_like_shop.length}}
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            <!--end .section-body -->
+        </section>
+        <!-- END PROFILE HEADER  -->
+
+        <section>
+            <div class="section-body no-margin">
+                <div class="row">
+                    <div class="pull-right" style="z-index: 99999; position: relative;" ng-if="abs">
+                        <button type="button" class="btn ink-reaction btn-floating-action btn-lg btn-warning" ng-click="go_update_shop()">
+                            <i class="md md-mode-edit"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="card force-padding">
+                            <form class="form">
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="shopId" ng-model="shop_detail[0].shopId" disabled>
+                                            <label for="shopId">Shop ID</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="shopboss" ng-model="shop_detail[0].shop_boss" disabled>
+                                            <label for="shopboss">Chủ Shop ID</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <!-- <p ng-repeat="content in shop_detail[0].shop_manager">{{content.text}}</p> &nbsp; -->
+                                            <tags-input ng-model="shop_detail[0].shop_manager" placeholder="Manager in Shop"></tags-input readonly>
+                                            <br/>
+                                            <!-- <input type="text" class="form-control" id="shopmanager" ng-model="shop_detail[0].shop_manager" disabled> -->
+                                            <label for="shopmanager">Quản lý ID</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="shopname" ng-model="shop_detail[0].shop_info[0].shop_name" disabled>
+                                            <label for="shopname">Shop Name</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="kind" ng-model="shop_detail[0].shop_info[0].kind[0].name" disabled>
+                                            <label for="kind">Phân loại</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="loaidv" ng-model="shop_detail[0].shop_info[0].service" disabled>
+                                            <label for="loaidv">Dịch vụ cung cấp</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="time" ng-model="shop_detail[0].shop_info[0].time" disabled>
+                                            <label for="time">Thời gian</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="address" id="address" class="form-control" rows="2" placeholder="" ng-model="shop_detail[0].shop_info[0].address"
+                                                disabled></textarea>
+                                            <label for="address">Địa chỉ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <textarea name="info" id="info" class="form-control" rows="5" placeholder="" ng-model="shop_detail[0].shop_info[0].info"
+                                                disabled></textarea>
+                                            <label for="info">Giới thiệu</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div id="aniimated-thumbnials" class="list-unstyled">
+                                        <div class="col-lg-3 col-md-4 col-sm-3" ng-repeat="content in shop_detail[0].shop_info[0].shop_album">
+                                            <a href="">
+                                                <img class="img-responsive thumbnail" src="{{content.url}}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!--end #activity -->
+                    </div>
+                    <!--end .col -->
+                    <!-- END MESSAGE ACTIVITY -->
+                </div>
+                <!--end .row -->
+            </div>
+            <!--end .section-body -->
+        </section>
+    </div>
+    <!--end #content-->
+    <!-- END CONTENT -->
+</div>
+
+<div id="detail" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" ng-if="abs">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Chi Tiết Shop
+                    <strong>{{shop_detail[0].shop_info[0].shop_name}}</strong>
+                </h4>
+            </div>
+
+            <div class="modal-body text-left">
+                <form class="form">
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="shopId" ng-model="shop_detail[0].shopId" disabled>
+                                <label for="shopId">Shop ID</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="shopboss" ng-model="shop_detail[0].shop_boss" disabled>
+                                <label for="shopboss">Chủ Shop ID</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="shopmanager" ng-model="shop_detail[0].shop_manager" disabled>
+                                <label for="shopmanager">Quản lý ID</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="shopname" ng-model="shop_detail[0].shop_info[0].shop_name" disabled>
+                                <label for="shopname">Shop Name</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="kind" ng-model="shop_detail[0].shop_info[0].kind[0].name" disabled>
+                                <label for="kind">Phân loại</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="loaidv" ng-model="shop_detail[0].shop_info[0].service" disabled>
+                                <label for="loaidv">Dịch vụ cung cấp</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="time" ng-model="shop_detail[0].shop_info[0].time" disabled>
+                                <label for="time">Thời gian</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="address" id="address" class="form-control" rows="2" placeholder="" ng-model="shop_detail[0].shop_info[0].address"
+                                    disabled></textarea>
+                                <label for="address">Địa chỉ</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <textarea name="info" id="info" class="form-control" rows="5" placeholder="" ng-model="shop_detail[0].shop_info[0].info"
+                                    disabled></textarea>
+                                <label for="info">Giới thiệu</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div id="aniimated-thumbnials" class="list-unstyled">
+                            <div class="col-lg-3 col-md-4" ng-repeat="content in shop_detail[0].shop_info[0].shop_album">
+                                <a href="">
+                                    <img class="img-responsive thumbnail" src="{{content.url}}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="_reload()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

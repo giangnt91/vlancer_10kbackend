@@ -1,0 +1,47 @@
+<style>
+    #menubar {
+        display: none;
+    }
+
+    #header {
+        display: none;
+    }
+</style>
+<!-- BEGIN LOGIN SECTION -->
+<section class="section-account">
+    <div class="spacer"></div>
+    <div class="card contain-sm style-transparent">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <br/>
+                    <span class="text-lg text-bold text-primary">WELCOME TO COUPON 10K ADMIN</span>
+                    <br/>
+                    <br/>
+                    <div class="alert alert-warning" ng-show="_error_login">
+                        <strong>Cảnh báo!</strong> Tài khoản của bạn hiện đang bị khóa liên hệ Admin để được hỗ trợ!
+                    </div>
+
+                    <div class="alert alert-warning" ng-show="_error_reg">
+                        <strong>Cảnh báo!</strong> Tài khoản của bạn chưa được đăng ký!
+                    </div>
+
+                    <div class="alert alert-danger" ng-show="_error_role">
+                        <strong>Cảnh báo!</strong> Trang quản trị chỉ dành cho quản lý shop!
+                    </div>
+
+                    <button fb-login type="button" class="btn ink-reaction btn-primary" ng-show="_face">
+                        <i class="fa fa-facebook-f" style="margin-right: 10px;"></i>
+                        Đăng Nhập Facebook</button>
+                </div>
+                <!--end .col -->
+                <div class="col-sm-3"></div>
+            </div>
+            <!--end .row -->
+        </div>
+        <!--end .card-body -->
+    </div>
+    <!--end .card -->
+</section>
+<!-- END LOGIN SECTION -->

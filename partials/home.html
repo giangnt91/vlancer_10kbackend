@@ -1,0 +1,207 @@
+<!-- BEGIN BASE-->
+<div id="base">
+
+	<!-- BEGIN CONTENT-->
+	<div id="content">
+		<section>
+			<div class="section-body">
+				<div class="row">
+
+					<!-- BEGIN ALERT - REVENUE -->
+					<div class="col-md-3 col-sm-6">
+						<div class="card">
+							<div class="card-body no-padding">
+								<div class="alert alert-callout alert-info no-margin ink-reaction">
+									<strong class="text-success text-xl">
+										<i class="md md-home"></i>
+										<span>{{shop_result.length}}</span>
+									</strong>
+									<br/>
+									<span class="opacity-50">Tổng Số Shop</span>
+									<div class="stick-bottom-left-right">
+										<div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+									</div>
+								</div>
+							</div>
+							<!--end .card-body -->
+						</div>
+						<!--end .card -->
+					</div>
+					<!--end .col -->
+					<!-- END ALERT - REVENUE -->
+
+					<!-- BEGIN ALERT - VISITS -->
+					<div class="col-md-3 col-sm-6">
+						<div class="card">
+							<div class="card-body no-padding">
+								<div class="alert alert-callout alert-warning no-margin ink-reaction">
+									<strong class="text-warning text-xl">
+										<i class="md md-grade"></i>
+										{{shop_vip.length}}
+									</strong>
+									<br/>
+									<span class="opacity-50">Shop Vip</span>
+									<div class="stick-bottom-right">
+										<div class="height-1 sparkline-visits" data-bar-color="#e5e6e6"></div>
+									</div>
+								</div>
+							</div>
+							<!--end .card-body -->
+						</div>
+						<!--end .card -->
+					</div>
+					<!--end .col -->
+					<!-- END ALERT - VISITS -->
+
+					<!-- BEGIN ALERT - BOUNCE RATES -->
+					<div class="col-md-3 col-sm-6">
+						<div class="card">
+							<div class="card-body no-padding">
+								<div class="alert alert-callout alert-info no-margin ink-reaction">
+									<strong class="text-info text-xl">
+										<i class="md md-dashboard"></i>
+										{{shop_normal.length}}
+									</strong>
+									<br/>
+									<span class="opacity-50">Shop Thường</span>
+								</div>
+							</div>
+							<!--end .card-body -->
+						</div>
+						<!--end .card -->
+					</div>
+					<!--end .col -->
+					<!-- END ALERT - BOUNCE RATES -->
+
+					<!-- BEGIN ALERT - TIME ON SITE -->
+					<div class="col-md-3 col-sm-6">
+						<div class="card">
+							<div class="card-body no-padding">
+								<div class="alert alert-callout alert-success no-margin ink-reaction">
+									<strong class="text-danger text-xl">
+										<i class="md md-warning"></i>
+										{{shop_top.length}}
+									</strong>
+									<br/>
+									<span class="opacity-50">Shop Ngưng Hoạt Động</span>
+								</div>
+							</div>
+							<!--end .card-body -->
+						</div>
+						<!--end .card -->
+					</div>
+					<!--end .col -->
+					<!-- END ALERT - TIME ON SITE -->
+
+				</div>
+
+				<div class="row">
+					<!-- BEGIN REGISTRATION HISTORY -->
+					<div class="col-md-9">
+						<div class="card">
+							<div class="card-head">
+								<header>
+									<i class="md md-account-child" style="font-size: 30px; margin-top: -9px;"></i> Thống Kê Thành Viên</header>
+							</div>
+							<!--end .card-head -->
+							<div class="card-body no-padding height-9">
+								<div class="row">
+									<!--end .col -->
+									<div class="col-sm-12 height-2">
+										<div class="force-padding pull-left text-default-light">
+											<h2 class="no-margin text-primary-dark">
+												<span class="text-xxl">{{all_user.length}}</span>
+											</h2>
+										</div>
+									</div>
+									<!--end .col -->
+									<div class="col-md-12">
+										<div class="card-body height-6">
+											<strong class="text-warning">{{user_bk.length}}</strong> Bạch Kim
+											<span class="pull-right text-success text-sm">{{user_bk_per}}%
+												<!-- <i class="md md-trending-up"></i> -->
+											</span>
+											<div class="progress progress-hairline">
+												<div class="progress-bar progress-bar-primary-dark" style="width:{{user_bk_per}}%"></div>
+											</div>
+											<strong class="text-warning">{{user_gold.length}}</strong> Vàng
+											<span class="pull-right text-success text-sm">{{user_gold_per}}%
+												<!-- <i class="md md-trending-up"></i> -->
+											</span>
+											<div class="progress progress-hairline">
+												<div class="progress-bar progress-bar-primary-dark" style="width:{{user_gold_per}}%"></div>
+											</div>
+											<strong class="text-warning">{{user_silver.length}}</strong> Bạc
+											<span class="pull-right text-success text-sm">{{user_silver_per}}%
+												<!-- <i class="md md-trending-down"></i> -->
+											</span>
+											<div class="progress progress-hairline">
+												<div class="progress-bar progress-bar-primary-dark" style="width:{{user_silver_per}}%"></div>
+											</div>
+											<strong class="text-warning">{{user_normal.length}}</strong> Thường
+											<span class="pull-right text-success text-sm">{{user_normal_per}}%
+												<!-- <i class="md md-trending-up"></i> -->
+											</span>
+											<div class="progress progress-hairline">
+												<div class="progress-bar progress-bar-primary-dark" style="width:{{user_normal_per}}%"></div>
+											</div>
+										</div>
+										<!--end .card-body -->
+									</div>
+									<!--end .col -->
+								</div>
+								<!--end .row -->
+								<div class="stick-bottom-left-right force-padding">
+									<div id="flot-registrations" class="flot height-5" data-title="Registration history" data-color="#0aa89e"></div>
+								</div>
+							</div>
+							<!--end .card-body -->
+						</div>
+						<!--end .card -->
+					</div>
+					<!--end .col -->
+					<!-- END REGISTRATION HISTORY -->
+
+					<!-- BEGIN NEW REGISTRATIONS -->
+					<div class="col-md-3">
+						<div class="card">
+							<div class="card-head">
+								<header>
+									<i class="md md-person-add" style="margin-top: -9px;"></i>
+									Thành Viên Mới
+								</header>
+							</div>
+							<!--end .card-head -->
+							<div class="card-body no-padding height-9 scroll">
+								<ul class="list divider-full-bleed">
+									<li class="tile" ng-repeat="content in all_user | orderBy:'-_id' | limitTo: 7">
+										<div class="tile-content">
+											<div class="tile-icon">
+												<img src="{{content.user_img}}" alt="" />
+											</div>
+											<div class="tile-text">{{content.info[0].fulname}}</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<!--end .card-body -->
+						</div>
+						<!--end .card -->
+					</div>
+					<!--end .col -->
+					<!-- END NEW REGISTRATIONS -->
+
+				</div>
+				<!--end .row -->
+			</div>
+			<!--end .section-body -->
+		</section>
+
+
+	</div>
+	<!--end #content-->
+	<!-- END CONTENT -->
+
+</div>
+<!--end #base-->
+<!-- END BASE -->

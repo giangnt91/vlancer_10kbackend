@@ -1,0 +1,180 @@
+<!-- BEGIN BASE-->
+<div id="base">
+
+    <!-- BEGIN CONTENT-->
+    <div id="content">
+        <section>
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 col-md-offset-2">
+
+                        <div class="card">
+                            <div class="card-head style-primary">
+                                <header>Tạo Shop Mới</header>
+                            </div>
+                            <div class="card-body padding">
+
+                                <form class="form">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="shopId" ng-model="data.shopid">
+                                                <label for="shopId">Shop ID</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="shopboss" ng-model="data.boss">
+                                                <label for="shopboss">Chủ Shop ID</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <tags-input ng-model="manager"></tags-input>
+                                                <!-- <input type="text" class="form-control" id="shopmanager" ng-model="data.manager"> -->
+                                                <label for="shopmanager">Quản lý ID</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="shopname" ng-model="data.shopname">
+                                                <label for="shopname">Tên Shop</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <select id="select1" name="select1" class="form-control" ng-model="data.kind">
+                                                    <option value="1">Ăn uống</option>
+                                                    <option value="2">Mua sắm</option>
+                                                    <option value="3">Du lịch</option>
+                                                </select>
+                                                <label for="select1">Phân loại</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="loaidv" ng-model="data.service">
+                                                <label for="loaidv">Dịch vụ cung cấp</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="time" ng-model="data.time">
+                                                <label for="time">Thời gian</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea name="address" id="address" class="form-control" rows="2" placeholder="" ng-model="data.address"></textarea>
+                                                <label for="address">Địa chỉ</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <textarea name="info" id="info" class="form-control" rows="5" placeholder="" ng-model="data.info"></textarea>
+                                                <label for="info">Giới thiệu</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="avatar">Hình Đại Diện</label>
+                                                <br>
+                                                <input type="file" class="form-control-file" id="avatar" name="avatar" ng-files="get_avatar($files)">
+                                            </div>
+                                        </div>
+                                        <!--end .col -->
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="bg">Ảnh Bìa</label>
+                                                <br>
+                                                <input type="file" class="form-control-file" id="cover" name="cover" ng-files="get_cover($files)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-body no-padding">
+                                                    <form>
+                                                        <div id="dropzone_2" dropzone="" class="dropzone no-padding">
+                                                            <div class="dz-message padding">
+                                                                <h3>Kéo thả ảnh hoặc chọn ảnh để upload Album.
+                                                                    <br>
+                                                                    <i class="md md-cloud-upload"></i>
+                                                                </h3>
+                                                                <em>(Tối đa cho mỗi lần upload là 8 file hình)</em>
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                                <!--end .card-body -->
+                                            </div>
+                                            <!--end .card -->
+                                        </div>
+                                        <!--end .col -->
+                                    </div>
+
+                                </form>
+
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#waiting" ng-click="create_shop(data)">
+                                        Tạo Shop
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div id="waiting" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Create New Shop</h4>
+            </div>
+
+            <div class="modal-body text-center">
+                <div ng-show="the_error">
+                    <div class="alert alert-warning" ng-show="error">
+                        <strong>Cảnh báo!</strong> Các trường phải được nhập đầy đủ để tạo shop mới.
+                    </div>
+                    <div class="alert alert-warning" ng-show="exist">
+                        <strong>Cảnh báo!</strong> ID Shop hoặc ID chủ shop vừa nhập đã tồn tại vui lòng nhập lại.
+                    </div>
+                </div>
+                <div ng-show="!the_error">
+                    <div class="loader" ng-show="!ok"></div>
+                    <h3 ng-show="ok">Shop đã được tạo thành công</h3>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="_reload()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,235 @@
+<!-- BEGIN BASE-->
+<div id="base">
+    <!-- BEGIN CONTENT-->
+    <div id="content">
+        <section>
+            <div class="section-body">
+                <div class="row">
+                    <!-- BEGIN ALERT - REVENUE -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="card">
+                            <div class="card-body no-padding">
+                                <div class="alert alert-callout alert-info no-margin ink-reaction">
+                                    <strong class="text-info text-xl">
+                                        <i class="md md-dashboard"></i>
+                                        <span>{{all_action.length}}</span>
+                                    </strong>
+                                    <br/>
+                                    <span class="opacity-50">Tổng Số Tác Vụ</span>
+                                    <div class="stick-bottom-left-right">
+                                        <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end .card-body -->
+                        </div>
+                        <!--end .card -->
+                    </div>
+                    <!--end .col -->
+                    <!-- END ALERT - REVENUE -->
+
+                    <!-- BEGIN ALERT - REVENUE -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="card">
+                            <div class="card-body no-padding">
+                                <div class="alert alert-callout alert-danger no-margin ink-reaction" data-toggle="modal" data-target="#create">
+                                    <strong class="text-danger text-xl">
+                                        <i class="md md-border-color"></i>
+                                        <span>Tạo Tác Vụ</span>
+                                    </strong>
+                                    <br/>
+                                    <span class="opacity-50">Tạo Tác Vụ Mới</span>
+                                    <div class="stick-bottom-left-right">
+                                        <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end .card-body -->
+                        </div>
+                        <!--end .card -->
+                    </div>
+                    <!--end .col -->
+                    <!-- END ALERT - REVENUE -->
+                </div>
+
+                <div class="row">
+                    <!--end .col -->
+                    <div class="col-lg-12">
+                        <div class="table-responsive alert alert-callout no-margin tbaction" style="overflow-x:unset;">
+                            <h2 ng-if="all_action.length === 0" class="text-center">Không có dữ liệu</h2>
+                            <table datatable="" ng-if="all_action.length > 0" dt-options="dtOptions" dt-columns="" class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tác Vụ ID</th>
+                                        <th>Shop ID</th>
+                                        <th>Url Tác Vụ</th>
+                                        <th hidden></th>
+                                        <th hidden></th>
+                                        <th>Số Like</th>
+                                        <th>Số Comment</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="content in all_action | orderBy:'-_id'">
+                                        <td>{{$index +1}}</td>
+                                        <td>{{content.action_id}}</td>
+                                        <td>{{content.action_shop_id}}</td>
+                                        <td style="width:50px !important">{{content.action_url}}</td>
+                                        <td hidden>
+                                            {{ ( _all_action_like_comment | filter: return_like(content.action_id)).length }}
+                                        </td>
+                                        <td hidden>
+                                            {{ ( _all_action_like_comment | filter: return_com(content.action_id)).length }}
+                                        </td>
+                                        <td>
+                                            {{like}}
+                                        </td>
+                                        <td>
+                                            {{com}}
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-success ink-reaction" data-toggle="modal" data-target="#myModal" ng-click="get_id_action(content._id)">
+                                                <i class="md md-mode-edit"></i>
+                                            </button>
+                                            &nbsp;
+                                            <button type="button" class="btn btn-danger ink-reaction" data-toggle="modal" data-target="#delete" ng-click="get_id_action(content._id)">
+                                                <i class="md md-delete"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--end .table-responsive -->
+                        <!-- END DATATABLE 1 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Create -->
+<div id="myModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- update action -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <h4 class="modal-title">Cập Nhật Tác Vụ</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <form class="form">
+                        <div class="alert alert-warning" ng-show="error">
+                            <strong>Cảnh Báo!</strong> Phải nhập đầy đủ thông tin để cập nhật tác vụ.
+                        </div>
+                        <div class="alert alert-success" ng-show="success">
+                            <strong>Thành Công!</strong> Tác vụ đã được cập nhật.
+                        </div>
+                        <div class="alert alert-danger" ng-show="server_error">
+                            <strong>Không Thành Công!</strong> Có lỗi trong quá trình xử lý.
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="shopIdu" ng-model="detail.action_shop_id">
+                            <label for="shopIdu">Shop ID</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="actionIdu" ng-model="detail.action_id">
+                            <label for="actionIdu">Tác Vụ ID</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="actionUrlu" ng-model="detail.action_url">
+                            <label for="actionUrlu">Tác Vụ Url</label>
+                        </div>
+                    </form>
+                </div>
+                <!--end .card-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" ng-click="edit(detail)">
+                    <i class="md md-send"></i> Cập Nhật</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- update -->
+
+<div id="create" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+        <!-- create action-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <h4 class="modal-title">Tạo Tác Vụ Mới</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <form class="form">
+                        <div class="alert alert-warning" ng-show="error">
+                            <strong>Cảnh Báo!</strong> Phải nhập đầy đủ thông tin để tạo tác vụ mới.
+                        </div>
+                        <div class="alert alert-success" ng-show="success">
+                            <strong>Thành Công!</strong> Tác vụ mới đã được tạo.
+                        </div>
+                        <div class="alert alert-danger" ng-show="server_error">
+                            <strong>Không Thành Công!</strong> {{error_message}}
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="shopId" ng-model="data.shopid">
+                            <label for="shopId">Shop ID</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="actionId" ng-model="data.actionid">
+                            <label for="actionId">Tác Vụ ID</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="actionUrl" ng-model="data.actionurl">
+                            <label for="actionUrl">Tác Vụ Url</label>
+                        </div>
+                    </form>
+                </div>
+                <!--end .card-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" ng-click="create_action(data)">
+                    <i class="md md-send"></i>Tạo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal delete -->
+<div class="modal fade" id="delete" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Xóa Tác Vụ</h4>
+            </div>
+
+            <div class="modal-body">
+                <p ng-show="!del">Bạn có chắc chắn muốn xóa tác vụ với id
+                    <strong class="text-primary">{{detail.action_id}}</strong> ?</p>
+                <p ng-show="del">Tác vụ với id
+                    <strong class="text-primary">{{detail.action_id}}</strong> đã được xóa thành công</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="set_is_del()">Đóng</button>
+                <a ng-show="!del" class="btn btn-danger btn-ok" ng-click="delete(detail._id)">Xóa</a>
+            </div>
+        </div>
+    </div>
+</div>

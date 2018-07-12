@@ -1,0 +1,148 @@
+.tbaction::before {
+  background: transparent !important;
+}
+
+.table {
+  table-layout: fixed;
+}
+
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dz-error-message {
+  top: 150px !important;
+}
+
+.dz-error-message {
+  display: none !important;
+}
+
+.dz-error-mark {
+  display: none !important;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid blue;
+  border-right: 10px solid green;
+  border-bottom: 10px solid red;
+  border-left: 10px solid pink;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.alert {
+  border: none !important;
+}
+
+.img-circle {
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+}
+
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  /* line-height: 50px; */
+  /* font-size: 50px; */
+  margin-top: -15px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+  font-size: 40px;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #000;
+}
+
+.rating:not(:hover) label input:checked~.icon {
+  color: #FFCA00;
+}
+
+.rating:hover label input:checked~.icon {
+  color: #FFCA00;
+}
+
+.btn-new {
+  padding: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+tags-input .tags {
+  box-shadow: none !important;
+}
+
+/* .thumbnail {
+  height: 120px !important;
+  width: 100%;
+} */

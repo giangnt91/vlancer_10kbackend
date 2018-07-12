@@ -1,0 +1,220 @@
+<!-- BEGIN BASE-->
+<div id="base">
+
+    <!-- BEGIN CONTENT-->
+    <div id="content">
+        <section>
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 col-md-offset-2">
+
+                        <div class="card">
+                            <div class="card-head style-primary">
+                                <header>
+                                    {{shop.shop_info[0].shop_name}}
+                                </header>
+                            </div>
+                            <div class="card-body padding">
+                                <div class="alert alert-warning" ng-show="error">
+                                    <strong>Cảnh báo!</strong> Các trường phải được nhập đầy đủ để tạo shop mới.
+                                </div>
+                                <div class="alert alert-warning" ng-show="exist">
+                                    <strong>Cảnh báo!</strong> ID Shop vừa nhập đã tồn tại vui lòng nhập lại.
+                                </div>
+
+                                <form class="form">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="shopId" ng-model="shop.shopId">
+                                                <label for="shopId">Shop ID</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="shopboss" ng-model="shop.shop_boss">
+                                                <label for="shopboss">Chủ Shop ID</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <tags-input ng-model="shop.shop_manager"></tags-input>
+                                                <br/>
+                                                <!-- <input type="text" class="form-control" id="shopmanager" ng-model="shop.shop_manager"> -->
+                                                <label for="shopmanager">Quản lý ID</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="shopname" ng-model="shop.shop_info[0].shop_name">
+                                                <label for="shopname">Tên Shop</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <select id="select1" name="select1" class="form-control" ng-model="shop.shop_info[0].kind">
+                                                    <option value="1">Ăn uống</option>
+                                                    <option value="2">Mua sắm</option>
+                                                    <option value="3">Du lịch</option>
+                                                </select>
+                                                <label for="select1">Phân loại</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="loaidv" ng-model="shop.shop_info[0].service">
+                                                <label for="loaidv">Dịch vụ cung cấp</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" ng-show="auth[0].role[0].id === 1">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <select id="select2" name="select2" class="form-control" ng-model="shop.shop_rank">
+                                                    <option value="0">Thường</option>
+                                                    <option value="1">Vip</option>
+                                                </select>
+                                                <label for="select2">Hạng</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <select id="select3" name="select3" class="form-control" ng-model="shop.shop_status">
+                                                    <option value="0">Tạm Ngưng</option>
+                                                    <option value="1">Hoạt Động</option>
+                                                </select>
+                                                <label for="select3">Trạng Thái</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="time" ng-model="shop.shop_info[0].time">
+                                                <label for="time">Thời gian</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea name="address" id="address" class="form-control" rows="2" placeholder="" ng-model="shop.shop_info[0].address"></textarea>
+                                                <label for="address">Địa chỉ</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <textarea name="info" id="info" class="form-control" rows="5" placeholder="" ng-model="shop.shop_info[0].info"></textarea>
+                                                <label for="info">Giới thiệu</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="card panel">
+                                        <div class="card-head collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#accordion1-3">
+                                            <header>Cập Nhật Hình</header>
+                                            <div class="tools">
+                                                <a class="btn btn-icon-toggle">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="accordion1-3" class="collapse">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="avatar">Hình Đại Diện</label>
+                                                            <br>
+                                                            <input type="file" class="form-control-file" id="avatar" name="avatar" ng-files="get_avatar($files)">
+                                                        </div>
+                                                    </div>
+                                                    <!--end .col -->
+
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="bg">Ảnh Bìa</label>
+                                                            <br>
+                                                            <input type="file" class="form-control-file" id="cover" name="cover" ng-files="get_cover($files)">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="card">
+                                                            <div class="card-body no-padding">
+                                                                <form>
+                                                                    <div id="dropzone_2" dropzone="" class="dropzone no-padding">
+                                                                        <div class="dz-message padding">
+                                                                            <h3>Kéo thả ảnh hoặc chọn ảnh để upload Album.
+                                                                                <br>
+                                                                                <i class="md md-cloud-upload"></i>
+                                                                            </h3>
+                                                                            <em>(Tối đa cho mỗi lần upload là 8 file hình)</em>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+                                                            <!--end .card-body -->
+                                                        </div>
+                                                        <!--end .card -->
+                                                    </div>
+                                                    <!--end .col -->
+                                                </div>
+                                            </div>
+                                            <!--end .card-actionbar -->
+                                        </div>
+                                    </div>
+                            </div>
+
+                            </form>
+
+                            <div class="text-center" style="margin-bottom:40px">
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#waiting" ng-click="update(shop)">
+                                    Cập Nhật
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+</div>
+</div>
+
+<div id="waiting" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Update Shop
+                    <strong class="text-warning">{{shop.shop_info[0].shop_name}}</strong>
+                </h4>
+            </div>
+
+            <div class="modal-body text-center">
+                <div class="loader" ng-show="!ok"></div>
+                <h3 ng-show="ok">Shop đã được cập nhật thành công</h3>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="_reload()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
