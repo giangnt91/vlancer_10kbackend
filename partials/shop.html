@@ -125,7 +125,7 @@
                                             </button>
                                         </td>
                                         <td>{{content.wallet}}</td>
-                                        <td>{{content.shop_coupon[0].coupon.length}}</td>
+                                        <td><span ng-if="content.shop_coupon.length > 0">{{content.shop_coupon[0].coupon.length}}</span> <span ng-if="content.shop_coupon.length === 0">0</span></td>
                                         <td>{{content.server_coupon[0].coupon.length}}</td>
                                         <td>{{content.shop_use_coupon.length}}</td>
                                         <td>{{content.shop_info[0].kind[0].name}}</td>
