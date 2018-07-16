@@ -241,14 +241,24 @@
     var select2 = document.getElementsByClassName('select2')[0];
     var select3 = document.getElementsByClassName('select3')[0];
 
-    input.addEventListener('focus', function () {
+    select1.addEventListener('focus', function () {
         select1.style.display = 'block';
+    });
+    select1.addEventListener('focusout', function () {
+        select1.style.display = 'none';
+    });
+
+    select2.addEventListener('focus', function () {
         select2.style.display = 'block';
+    });
+    select2.addEventListener('focusout', function () {
+        select2.style.display = 'none';
+    });
+
+    select3.addEventListener('focus', function () {
         select3.style.display = 'block';
     });
-    input.addEventListener('focusout', function () {
-        select1.style.display = 'none';
-        select2.style.display = 'none';
+    select3.addEventListener('focusout', function () {
         select3.style.display = 'none';
     });
 </script>
