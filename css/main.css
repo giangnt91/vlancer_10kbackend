@@ -146,3 +146,15 @@ tags-input .tags {
   height: 120px !important;
   width: 100%;
 } */
+
+#select1 { 
+  display: none;
+}
+
+#select2{
+  display: none;
+}
+
+#select3{
+  display: none;
+}
