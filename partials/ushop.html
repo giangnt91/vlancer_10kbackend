@@ -241,12 +241,13 @@
     var select2 = document.getElementById('select2');
     var select3 = document.getElementById('select3');
 
-    select1_.addEventListener('focus', function () {
+    select1_.addEventListener('click', function () {
         select1.style.display = 'block';
+        select1_.style.display = 'none';
     });
-    select1_.addEventListener('focusout', function () {
-        select1.style.display = 'none';
-    });
+    // select1_.addEventListener('focusout', function () {
+    //     select1.style.display = 'none';
+    // });
 
     select2_.addEventListener('focus', function () {
         select2.style.display = 'block';
