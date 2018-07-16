@@ -91,7 +91,7 @@
 
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="select2_" ng-model="shop.shop_status[0].name">
+                                                <input type="text" class="form-control" id="select3_" ng-model="shop.shop_status[0].name">
                                                 <select id="select3" name="select3" class="form-control" ng-model="shop.shop_status">
                                                     <option value="0">Tạm Ngưng</option>
                                                     <option value="1">Hoạt Động</option>
@@ -231,3 +231,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    var select1_ = document.getElementById('select1_');
+    var select2_ = document.getElementById('select2_');
+    var select3_ = document.getElementById('select3_');
+
+    var select1 = document.getElementsByClassName('select1')[0];
+    var select2 = document.getElementsByClassName('select2')[0];
+    var select3 = document.getElementsByClassName('select3')[0];
+
+    input.addEventListener('focus', function () {
+        select1.style.display = 'block';
+        select2.style.display = 'block';
+        select3.style.display = 'block';
+    });
+    input.addEventListener('focusout', function () {
+        select1.style.display = 'none';
+        select2.style.display = 'none';
+        select3.style.display = 'none';
+    });
+</script>
