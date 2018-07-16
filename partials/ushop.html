@@ -241,24 +241,24 @@
     var select2 = document.getElementsByClassName('select2')[0];
     var select3 = document.getElementsByClassName('select3')[0];
 
-    select1.addEventListener('focus', function () {
-        select1.style.display = 'block';
+    select1_.addEventListener('focus', function () {
+        select1_.style.display = 'block';
     });
-    select1.addEventListener('focusout', function () {
-        select1.style.display = 'none';
-    });
-
-    select2.addEventListener('focus', function () {
-        select2.style.display = 'block';
-    });
-    select2.addEventListener('focusout', function () {
-        select2.style.display = 'none';
+    select1_.addEventListener('focusout', function () {
+        select1_.style.display = 'none';
     });
 
-    select3.addEventListener('focus', function () {
-        select3.style.display = 'block';
+    select2_.addEventListener('focus', function () {
+        select2_.style.display = 'block';
     });
-    select3.addEventListener('focusout', function () {
-        select3.style.display = 'none';
+    select2_.addEventListener('focusout', function () {
+        select2_.style.display = 'none';
+    });
+
+    select3_.addEventListener('focus', function () {
+        select3_.style.display = 'block';
+    });
+    select3_.addEventListener('focusout', function () {
+        select3_.style.display = 'none';
     });
 </script>
