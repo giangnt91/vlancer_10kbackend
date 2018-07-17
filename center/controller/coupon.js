@@ -202,15 +202,27 @@ coupon
                 if (_m + parseInt($scope.enday) >= 12) {
                     _y = _y + 1;
                     _m = ((_m + parseInt($scope.enday)) - 12) + 1;
+                    if (_m < 10) {
+                        _m = "0" + _m;
+                    }
                 } else {
                     _m = (_m + parseInt($scope.enday)) + 1;
+                    if (_m < 10) {
+                        _m = "0" + _m;
+                    }
                 }
-            }else{
+            } else {
                 if (_m + 12 >= 12) {
                     _y = _y + 1;
                     _m = ((_m + 12) - 12) + 1;
+                    if (_m < 10) {
+                        _m = "0" + _m;
+                    }
                 } else {
                     _m = (_m + 12) + 1;
+                    if (_m < 10) {
+                        _m = "0" + _m;
+                    }
                 }
             }
             $scope._limit = _d + '/' + _m + '/' + _y;
