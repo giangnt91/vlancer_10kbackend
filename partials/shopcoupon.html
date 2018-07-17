@@ -159,7 +159,7 @@
                                                 <td>{{content.the_issuer[0].name}}</td>
                                                 <td>{{content.coupon_info}}</td>
                                                 <td>{{content.release_day}}</td>
-                                                <td>{{content.time_expire}} Tháng</td>
+                                                <td><span ng-if="content.time_expire !== '1'">{{content.time_expire}} Tháng</span> <span ng-if="content.time_expire === '1'">{{content.time_expire}} Năm</span></td>
                                                 <td>{{content.value}} VNĐ</td>
                                                 <td>{{content.class_user[0].name}}</td>
                                                 <td ng-class="{'text-success': content.approved === true,'text-danger': content.approved === false ,'text-primary': content.approved === 'pending'}">
