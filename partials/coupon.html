@@ -150,6 +150,7 @@
                                             <th>Ngày Phát Hành</th>
                                             <th>Ngày Hết Hạng</th>
                                             <th>Giá Trị</th>
+                                            <th>Số Lượng</th>
                                             <th>Hạng Thành Viên</th>
                                             <th></th>
                                         </tr>
@@ -161,6 +162,7 @@
                                             <td>{{content.coupon[0].release_day}}</td>
                                             <td><span ng-if="content.coupon[0].time_expire !== '1'">{{content.coupon[0].time_expire}} Tháng</span> <span ng-if="content.coupon[0].time_expire === '1'">{{content.coupon[0].time_expire}} Năm</span></td>
                                             <td>{{content.coupon[0].value}}</td>
+                                            <td>{{content.coupon.length}}</td>
                                             <td>{{content.coupon[0].class_user[0].name}}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-danger ink-reaction" data-toggle="modal" data-target="#cancel" ng-click="get_id_coupon(content.coupon[0]._id)">
