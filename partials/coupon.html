@@ -160,7 +160,7 @@
                                             <td>{{content.coupon[0].the_issuer[0].name}}</td>
                                             <td>{{content.coupon[0].coupon_info}}</td>
                                             <td>{{content.coupon[0].release_day}}</td>
-                                            <td><span ng-if="content.coupon[0].time_expire !== '1'">{{content.coupon[0].time_expire}} Tháng</span> <span ng-if="content.coupon[0].time_expire === '1'">{{content.coupon[0].time_expire}} Năm</span></td>
+                                            <td><span ng-if="content.coupon[0].time_expire !== 1">{{content.coupon[0].time_expire}} Tháng</span> <span ng-if="content.coupon[0].time_expire === 1">{{content.coupon[0].time_expire}} Năm</span></td>
                                             <td>{{content.coupon[0].value}}</td>
                                             <td>{{content.coupon.length}}</td>
                                             <td>{{content.coupon[0].class_user[0].name}}</td>
