@@ -195,7 +195,7 @@ coupon
 
         $scope.c_cuopon = function (data) {
             var date = new Date();
-            var _m = date.getMonth();
+            var _m =$filter('date')(date, "mm");
             var _d = $filter('date')(date, "dd");
             var _y = date.getFullYear();
             if (parseInt($scope.enday) !== 1) {
