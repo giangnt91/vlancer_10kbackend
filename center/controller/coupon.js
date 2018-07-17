@@ -134,6 +134,7 @@ coupon
         $scope.c_coupon = function () {
             DataApi.cancelApproved($scope.detail.the_issuer[0].id).then(function (response) {
                 if (response.data.error_code === 0) {
+                    Thesocket.emit('server_accept');
                     DataApi.getAllcoupon().then(function (response) {
                         if (response.data.error_code === 0) {
                             $scope.all_coupon = response.data.coupon;
