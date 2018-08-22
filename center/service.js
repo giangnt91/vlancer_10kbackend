@@ -1,7 +1,7 @@
 angular.module('AdminService', [])
     .factory('DataApi', function ($http) {
         // var api_gateway_url = 'http://localhost:2018';
-        var api_gateway_url = 'http://35.200.213.108:2018';
+        var api_gateway_url = 'http://35.240.165.98:2018';
         var parameter;
         var url;
         var header = { header: { 'Conntent-Type': 'application/x-www-form-urlencoded' } };
@@ -303,7 +303,7 @@ angular.module('AdminService', [])
         }
     })
     .factory('Thesocket', function (socketFactory) {
-        var api_gateway_url = 'http://35.200.213.108:2018';
+        var api_gateway_url = 'http://35.240.165.98:2018';
         var socketConnection = io.connect(api_gateway_url);
         var socket = socketFactory({
             ioSocket: socketConnection
