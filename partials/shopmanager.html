@@ -67,17 +67,14 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <!-- <p ng-repeat="content in shop_detail[0].shop_manager">{{content.text}}</p> &nbsp; -->
-                                            <tags-input ng-model="shop_detail[0].shop_manager" placeholder="Manager in Shop"></tags-input readonly>
-                                            <br/>
-                                            <!-- <input type="text" class="form-control" id="shopmanager" ng-model="shop_detail[0].shop_manager" disabled> -->
-                                            <label for="shopmanager">Quản lý ID</label>
+                                            <input type="text" class="form-control" id="time" ng-model="shop_detail[0].shop_info[0].time" disabled>
+                                            <label for="time">Thời gian hoạt động</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="shopname" ng-model="shop_detail[0].shop_info[0].shop_name" disabled>
-                                            <label for="shopname">Shop Name</label>
+                                            <label for="shopname">Tên Shop</label>
                                         </div>
                                     </div>
                                 </div>
@@ -99,11 +96,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="time" ng-model="shop_detail[0].shop_info[0].time" disabled>
-                                            <label for="time">Thời gian</label>
-                                        </div>
+                                    <div class="col-md-12 col-sm-6">
                                         <div class="form-group">
                                             <textarea name="address" id="address" class="form-control" rows="2" placeholder="" ng-model="shop_detail[0].shop_info[0].address"
                                                 disabled></textarea>
@@ -111,7 +104,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-sm-6">
+                                    <div class="col-md-12 col-sm-6">
                                         <div class="form-group">
                                             <textarea name="info" id="info" class="form-control" rows="5" placeholder="" ng-model="shop_detail[0].shop_info[0].info"
                                                 disabled></textarea>
