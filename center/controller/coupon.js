@@ -241,6 +241,18 @@ coupon
                 }]
             }
 
+            if ($scope.checked2 === true) {
+                $scope.loyal = [{
+                    id: 1,
+                    name: "Có"
+                }]
+            } else {
+                $scope.loyal = [{
+                    id: 2,
+                    name: "Không"
+                }]
+            }
+
             // var enday = $('#enday').val();
             var all_coupon = [];
 
@@ -311,6 +323,7 @@ coupon
                                 time_user_use: null,
                                 rating: 0,
                                 rfeedback: $scope.rfeedback,
+                                loyal: $scope.loyal,
                                 feedback: "",
                                 approved: "pending"
                             }
@@ -393,6 +406,7 @@ coupon
                                 time_user_use: null,
                                 rating: 0,
                                 rfeedback: $scope.rfeedback,
+                                loyal: $scope.loyal,
                                 feedback: "",
                                 approved: true
                             }
