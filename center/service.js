@@ -1,7 +1,7 @@
 angular.module('AdminService', [])
     .factory('DataApi', function ($http) {
-        var api_gateway_url = 'http://localhost:2018';
-        // var api_gateway_url = 'http://35.240.165.98:2018';
+        // var api_gateway_url = 'http://localhost:2018';
+        var api_gateway_url = 'http://35.240.165.98:2018';
         var parameter;
         var url;
         var header = { header: { 'Conntent-Type': 'application/x-www-form-urlencoded' } };
@@ -148,7 +148,7 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/avatar';
                 return $http.post(url, fd, _header);
             },
-            uVip: function(shopId, vip){
+            uVip: function (shopId, vip) {
                 var fd = new FormData();
                 var img = [];
                 var vip_ex = vip.name.substr(vip.name.lastIndexOf('.') + 1);
@@ -249,31 +249,49 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/getshopbyboss';
                 return $http.post(url, parameter, header);
             },
+            createEmarket: function (ename, eimg) {
+                parameter = JSON.stringify({
+                    ename: ename,
+                    eimg: eimg
+                })
+                url = api_gateway_url + '/emarket';
+                return $http.post(url, parameter, header);
+            },
+            getEmarket: function () {
+                url = api_gateway_url + '/getemarket';
+                return $http.post(url, parameter, header);
+            },
             getAllbasic: function () {
                 url = api_gateway_url + '/getbasic';
                 return $http.post(url, parameter, header);
             },
-            createBasic: function (shopId, shopImg, info_coupon, value, code_coupon, expire_day, shopUrl) {
+            createBasic: function (Eid, Ename, Eimg, Code, Url, Industry, Info, ValueC, Expireday) {
                 parameter = JSON.stringify({
-                    shopId: shopId,
-                    shopImg: shopImg,
-                    info_coupon: info_coupon,
-                    value: value,
-                    code_coupon: code_coupon,
-                    expire_day: expire_day,
-                    shopUrl: shopUrl
+                    Eid: Eid,
+                    Ename: Ename,
+                    Eimg: Eimg,
+                    Code: Code,
+                    Url: Url,
+                    Industry: Industry,
+                    Info: Info,
+                    ValueC: ValueC,
+                    Expireday: Expireday
                 });
                 url = api_gateway_url + '/basic';
                 return $http.post(url, parameter, header);
             },
-            UpdateBasic: function (shopId, info_coupon, value, code_coupon, expire_day, shopUrl) {
+            UpdateBasic: function (_id, Eid, Ename, Eimg, Code, Url, Industry, Info, ValueC, Expireday) {
                 parameter = JSON.stringify({
-                    shopId: shopId,
-                    info_coupon: info_coupon,
-                    value: value,
-                    code_coupon: code_coupon,
-                    expire_day: expire_day,
-                    shopUrl: shopUrl
+                    _id: _id,
+                    Eid: Eid,
+                    Ename: Ename,
+                    Eimg: Eimg,
+                    Code: Code,
+                    Url: Url,
+                    Industry: Industry,
+                    Info: Info,
+                    ValueC: ValueC,
+                    Expireday: Expireday
                 });
                 url = api_gateway_url + '/updatebasic';
                 return $http.post(url, parameter, header);

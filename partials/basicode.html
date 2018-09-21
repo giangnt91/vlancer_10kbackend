@@ -6,7 +6,7 @@
             <div class="section-body">
                 <div class="row">
                     <!-- BEGIN ALERT - REVENUE -->
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-body no-padding">
                                 <div class="alert alert-callout alert-info no-margin ink-reaction">
@@ -14,7 +14,7 @@
                                         <i class="md md-dashboard"></i>
                                         <span>{{basic.length}}</span>
                                     </strong>
-                                    <br/>
+                                    <br />
                                     <span class="opacity-50">Tổng Số Mã Giảm Giá</span>
                                     <div class="stick-bottom-left-right">
                                         <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
@@ -29,15 +29,16 @@
                     <!-- END ALERT - REVENUE -->
 
                     <!-- BEGIN ALERT - REVENUE -->
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-body no-padding">
-                                <div class="alert alert-callout alert-danger no-margin ink-reaction" data-toggle="modal" data-target="#create">
+                                <div class="alert alert-callout alert-danger no-margin ink-reaction" data-toggle="modal"
+                                    data-target="#create">
                                     <strong class="text-danger text-xl">
                                         <i class="md md-border-color"></i>
                                         <span>Tạo Mã</span>
                                     </strong>
-                                    <br/>
+                                    <br />
                                     <span class="opacity-50">Tạo Mã Giảm Giá</span>
                                     <div class="stick-bottom-left-right">
                                         <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
@@ -50,6 +51,32 @@
                     </div>
                     <!--end .col -->
                     <!-- END ALERT - REVENUE -->
+
+                    <!-- BEGIN ALERT - REVENUE -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card">
+                            <div class="card-body no-padding">
+                                <div class="alert alert-callout alert-success no-margin ink-reaction" data-toggle="modal"
+                                    data-target="#emarket">
+                                    <strong class="text-success text-xl">
+                                        <i class="md md-border-color"></i>
+                                        <span>Tạo Web</span>
+                                    </strong>
+                                    <br />
+                                    <span class="opacity-50">Tạo Trang Thương Mại Điện Tử</span>
+                                    <div class="stick-bottom-left-right">
+                                        <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end .card-body -->
+                        </div>
+                        <!--end .card -->
+                    </div>
+                    <!--end .col -->
+                    <!-- END ALERT - REVENUE -->
+
+
                 </div>
 
                 <div class="row">
@@ -60,45 +87,47 @@
                             <table ng-if="basic.length > 0" datatable="" dt-options="dtOptions" dt-columns="" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Shop ID</th>
-                                        <th>Hình Đại Diện</th>
-                                        <th>Thông Tin</th>
+                                        <th>Web Thương Mại ĐT</th>
                                         <th>Mã Giảm Giá</th>
+                                        <th>Nghành Hàng</th>
+                                        <th>Url</th>
                                         <th>Giá Trị</th>
+                                        <th>Thông Tin</th>
                                         <th>Thời Hạn Sử Dụng</th>
-                                        <th>Url Website</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="content in basic">
                                         <td>
-                                            {{content.shopId}}
+                                            {{content.Ename}}
                                         </td>
                                         <td>
-                                            {{content.shopImg}}
+                                            {{content.Code}}
                                         </td>
                                         <td>
-                                            {{content.info_coupon}}
+                                            {{content.Industry}}
                                         </td>
                                         <td>
-                                            {{content.code_coupon}}
+                                            {{content.Url}}
                                         </td>
                                         <td>
-                                            {{content.value[0].value}} {{content.value[0].name}}
+                                            {{content.ValueC[0].value}} {{content.ValueC[0].name}}
                                         </td>
                                         <td>
-                                            {{content.expire_day}}
+                                            {{content.Info}}
                                         </td>
                                         <td>
-                                            {{content.shopUrl}}
+                                            {{content.Expireday}}
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-success ink-reaction" data-toggle="modal" data-target="#update" ng-click="get_id_action(content._id)">
+                                            <button type="button" class="btn btn-success ink-reaction" data-toggle="modal"
+                                                data-target="#update" ng-click="get_id_action(content._id)">
                                                 <i class="md md-mode-edit"></i>
                                             </button>
                                             &nbsp;
-                                            <button type="button" class="btn btn-danger ink-reaction" data-toggle="modal" data-target="#delete" ng-click="get_id_action(content._id)">
+                                            <button type="button" class="btn btn-danger ink-reaction" data-toggle="modal"
+                                                data-target="#delete" ng-click="get_id_action(content._id)">
                                                 <i class="md md-delete"></i>
                                             </button>
                                         </td>
@@ -141,51 +170,54 @@
                             <strong>Không Thành Công!</strong> Có lỗi trong quá trình xử lý.
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="shopId" ng-model="detail.shopId">
-                            <label for="shopId">Shop ID</label>
+                            <label for="mstatus">Trang Thương Mại Điện Tử</label>
+                            <select class="form-control" ng-model="chooseEmarket2" ng-options="option.Ename for option in list_Emarket">
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="bg">Hình Đại Diện</label>
-                            <br>
-                            <input type="file" class="form-control-file" id="avatar2" name="avatar2" ng-files="get_avatar($files)">
+                            <input type="text" class="form-control" id="uCode" ng-model="detail.Code">
+                            <label for="Code">Mã Giảm Giá</label>
                         </div>
+
                         <div class="form-group">
-                            <input type="text" class="form-control" id="actionUrl" ng-model="detail.code_coupon">
-                            <label for="actionUrl">Mã Giảm Giá</label>
+                            <input type="text" class="form-control" id="uUrl" ng-model="detail.Url">
+                            <label for="Url">Url Website</label>
                         </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="uactionUrl" ng-model="detail.Industry">
+                            <label for="actionUrl">Ngành Hàng</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="info">Thông Tin</label>
+                            <textarea name="info" id="info" class="form-control" rows="2" placeholder="" ng-model="detail.Info"></textarea>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-2 col-sm-6">
                                 <label class="radio-inline radio-styled radio-success">
-                                    <input type="radio" name="uprice" value="1" ng-model="uloai" ng-checked="detail.value[0].id === 1">
+                                    <input type="radio" name="price" value="1" ng-model="uloai" ng-checked="detail.ValueC[0].id === 1">
                                     <span>VNĐ</span>
                                 </label>
 
                             </div>
                             <div class="col-md-2 col-sm-6">
                                 <label class="radio-inline radio-styled radio-warning">
-                                    <input type="radio" name="uprice" value="2" ng-model="uloai" ng-checked="detail.value[0].id === 2">
+                                    <input type="radio" name="price" value="2" ng-model="uloai" ng-checked="detail.ValueC[0].id === 2">
                                     <span>%</span>
                                 </label>
                             </div>
                             <div class="col-md-8 col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="ucval" ng-model="detail.value[0].value">
-                                    <label for="ucval">Giá Trị</label>
+                                    <input type="text" class="form-control" id="cval" ng-model="detail.ValueC[0].value">
+                                    <label for="cval">Giá Trị</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input id="enday2" type="text" class="form-control ran" ng-model="detail.expire_day">
+                            <input id="enday2" type="text" class="form-control ran">
                             <label>Ngày Hết Hạn</label>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="actionUrl" ng-model="detail.shopUrl">
-                            <label for="actionUrl">Url Website</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="info">Thông Tin</label>
-                            <textarea name="info" id="info" class="form-control" rows="3" placeholder="" ng-model="detail.info_coupon"></textarea>
                         </div>
                     </form>
                 </div>
@@ -227,17 +259,28 @@
                             <strong>Không Thành Công!</strong> Có lỗi trong quá trình xử lý.
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="shopId" ng-model="data.shopid">
-                            <label for="shopId">Shop ID</label>
+                            <label for="mstatus">Trang Thương Mại Điện Tử</label>
+                            <select class="form-control" ng-model="chooseEmarket" ng-options="option.Ename for option in list_Emarket">
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="bg">Hình Đại Diện</label>
-                            <br>
-                            <input type="file" class="form-control-file" id="avatar" name="avatar" ng-files="get_avatar($files)">
+                            <input type="text" class="form-control" id="basiccode" ng-model="data.basiccode">
+                            <label for="basiccode">Mã Giảm Giá</label>
                         </div>
+
                         <div class="form-group">
-                            <input type="text" class="form-control" id="actionUrl" ng-model="data.basiccode">
-                            <label for="actionUrl">Mã Giảm Giá</label>
+                            <input type="text" class="form-control" id="actionUrl" ng-model="data.url">
+                            <label for="actionUrl">Url Website</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="actionUrl" ng-model="data.nganhhang">
+                            <label for="actionUrl">Ngành Hàng</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="info">Thông Tin</label>
+                            <textarea name="info" id="info" class="form-control" rows="2" placeholder="" ng-model="data.info"></textarea>
                         </div>
 
                         <div class="row">
@@ -256,24 +299,14 @@
                             </div>
                             <div class="col-md-8 col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="cval" ng-model="data.value">
-                                    <label for="cval">Giá Trị</label>
+                                    <input type="text" class="form-control" id="ucval" ng-model="data.value">
+                                    <label for="ucval">Giá Trị</label>
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <input id="enday" type="text" class="form-control ran">
                             <label>Ngày Hết Hạn</label>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="actionUrl" ng-model="data.url">
-                            <label for="actionUrl">Url Website</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="info">Thông Tin</label>
-                            <textarea name="info" id="info" class="form-control" rows="3" placeholder="" ng-model="data.info"></textarea>
                         </div>
                     </form>
                 </div>
@@ -289,12 +322,58 @@
     </div>
 </div>
 
+<!-- tạo trang thương mại điện tử -->
+<div id="emarket" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+        <!-- create action-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <h4 class="modal-title">Tạo Trang Thương Mại Điện Tử</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <form class="form">
+                        <div class="alert alert-info" ng-show="waiting">
+                            <strong>Waiting!</strong> Đang xử lý dữ liệu vui lòng đợi ...
+                        </div>
+                        <div class="alert alert-warning" ng-show="error">
+                            <strong>Cảnh Báo!</strong> Phải nhập đầy đủ thông tin để tạo mã giảm giá mới.
+                        </div>
+                        <div class="alert alert-success" ng-show="success">
+                            <strong>Thành Công!</strong> Mã giảm giá mới đã được tạo.
+                        </div>
+                        <div class="alert alert-danger" ng-show="server_error">
+                            <strong>Không Thành Công!</strong> Có lỗi trong quá trình xử lý.
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="ename" ng-model="data.ename">
+                            <label for="ename">Tên Trang</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="eimg" ng-model="data.eimg">
+                            <label for="eimg">Url Hình Đại Diện</label>
+                        </div>
+                    </form>
+                </div>
+                <!--end .card-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" ng-click="createEmarket(data)">
+                    Tạo
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
 <!-- Modal delete -->
-<div class="modal fade" id="delete" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="delete" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
