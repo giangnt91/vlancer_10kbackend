@@ -122,6 +122,11 @@ coupon
         // window.location.reload(true);
       }
 
+      $scope.go_slider = function () {
+        $location.path('/quan-ly/slider');
+        $window.scrollTo(0, 0);
+      }
+
       // for shop
       $scope.go_manager = function () {
         // $window.location.href = '/manager';

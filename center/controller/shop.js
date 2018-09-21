@@ -136,9 +136,6 @@ coupon
             $scope.avatar = $files;
         }
 
-        $scope.get_vip = function ($files) {
-            $scope.vip = $files;
-        }
 
         $scope.create_shop = function (data) {
             var _kind;
@@ -146,7 +143,6 @@ coupon
                 if (
                     data.shopid === undefined || data.shopid === "" ||
                     data.boss === undefined || data.boss === "" ||
-                    // data.manager === undefined || data.manager === "" ||
                     data.shopname === undefined || data.shopname === "" ||
                     data.kind === undefined || data.kind === "" ||
                     data.service === undefined || data.service === "" ||
@@ -156,15 +152,11 @@ coupon
                     $scope.avatar === undefined || $scope.avatar.length === 0 ||
                     $scope.cover === undefined || $scope.avatar.length === 0 ||
                     $scope.all_file.length === 0
-                    // $scope.vip === undefined || $scope.vip.length === 0
                 ) {
                     $scope.the_error = true;
                     $scope.error = true;
                     window.scrollTo(0, 0);
-                    // $timeout(function () {
-                    //     $scope.error = false;
-                    //     $scope.$apply();
-                    // }, 2500);
+
                 } else {
                     _status = [{
                         id: 0,
@@ -197,25 +189,19 @@ coupon
                         info: data.info,
                         shop_avatar: "",
                         shop_cover: "",
-                        shop_album: [],
-                        shop_vip: null
+                        shop_album: []
                     }];
 
                     shop_rank = [{
                         id: 0,
                         name: "Thường"
                     }]
-                    if($scope.vip === undefined || $scope.vip.length === 0){
-                        $scope.the_vip = null;
-                    }else{
-                        $scope.the_vip = $scope.vip[0];
-                    }
 
                     DataApi.createShop(data.shopid, data.boss, $scope.manager, JSON.stringify(_status), JSON.stringify(shop_rank), JSON.stringify(shop_info)).then(function (response) {
                         if (response.data.error_code === 0) {
                             $scope.the_error = false;
                             $timeout(function () {
-                                DataApi.uploadImg(data.shopid, $scope.avatar[0], $scope.cover[0], $scope.all_file, $scope.the_vip).then(function (response) {
+                                DataApi.uploadImg(data.shopid, $scope.avatar[0], $scope.cover[0], $scope.all_file).then(function (response) {
                                     if (response.data.error_code === 0) {
                                         $timeout(function () {
                                             $scope.ok = true;

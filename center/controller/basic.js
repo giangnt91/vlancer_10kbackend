@@ -1,4 +1,18 @@
 coupon
+    // .directive('ngFiles', ['$parse', function ($parse) {
+
+    //     function fn_link(scope, element, attrs) {
+    //         var onChange = $parse(attrs.ngFiles);
+    //         element.on('change', function (event) {
+    //             onChange(scope, { $files: event.target.files });
+    //         });
+    //     };
+
+    //     return {
+    //         link: fn_link
+    //     }
+    // }])
+
     .controller('BasicodeCtrl', function ($scope, $window, DataApi, $timeout, DTOptionsBuilder) {
         $scope.get_all = function () {
             DataApi.getAllbasic().then(function (response) {
@@ -138,7 +152,7 @@ coupon
             $scope.detail.ValueC = [_value];
 
             $timeout(function () {
-                DataApi.UpdateBasic($scope.detail._id, $scope.chooseEmarket2._id, $scope.chooseEmarket2.Ename, $scope.chooseEmarket2.Eimg, $scope.detail.Code, $scope.detail.Url, $scope.detail.Industry,  $scope.detail.Info, $scope.detail.ValueC, $scope.detail.Expireday).then(function (response) {
+                DataApi.UpdateBasic($scope.detail._id, $scope.chooseEmarket2._id, $scope.chooseEmarket2.Ename, $scope.chooseEmarket2.Eimg, $scope.detail.Code, $scope.detail.Url, $scope.detail.Industry, $scope.detail.Info, $scope.detail.ValueC, $scope.detail.Expireday).then(function (response) {
                     if (response.data.error_code === 0) {
                         // $('#update').animate({ scrollTop: 0 }, 'slow');
                         $scope.waiting = false;
@@ -223,4 +237,149 @@ coupon
         }
 
         get_Emarket();
+    })
+
+    .controller('SliderCtrl', function ($scope, $window, DataApi, $timeout, DTOptionsBuilder) {
+        DataApi.getAllshop().then(function (response) {
+            if (response.data.error_code === 0) {
+                $scope.Shops = [{
+                    _id: null,
+                    shop_info: [{
+                        shop_name: 'Khác'
+                    }]
+                }];
+                $scope.chooseShop = $scope.Shops[0];
+                response.data.shop.forEach(element => {
+                    if (element.shop_status[0].id > 0) {
+                        $scope.Shops.push(element);
+                    }
+                });
+
+                $scope.dtOptions = DTOptionsBuilder.newOptions()
+                    .withDisplayLength(10)
+                    .withOption('bLengthChange', true)
+                    .withOption('iDisplayLength', 10)
+            }
+        });
+
+        $scope.get_slider = function ($files) {
+            $scope.slider = $files;
+        }
+
+
+        function bo_dau_tv(key) {
+            var str = key;
+            str = str.toLowerCase();
+            str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+            str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+            str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+            str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+            str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+            str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+            str = str.replace(/đ/g, "d");
+            str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, " ");
+            str = str.replace(/ + /g, " ");
+            str = str.trim();
+            return str;
+        }
+
+        function get_url(id) {
+            let url;
+            $scope.Shops.forEach(element => {
+                if (element._id === id) {
+                    var slug = bo_dau_tv(element.shop_info[0].shop_name).split(' ').join('-');
+                    var _id = element._id.slice(-5);
+
+                    if (element.shop_info[0].kind[0].id === 1) {
+                        url = '/an-uong/cua-hang/' + slug + '-' + _id;
+                    } else if (element.shop_info[0].kind[0].id === 2) {
+                        url = '/mua-sam/cua-hang/' + slug + '-' + _id;
+                    } else {
+                        url = '/du-lich/cua-hang/' + slug + '-' + _id;
+                    }
+                }
+            });
+            return url;
+        }
+
+        // end go menu
+
+        $scope.checkchange = function () {
+            $scope.khac = false;
+            if ($scope.chooseShop._id !== null) {
+                $scope.khac = true;
+                $scope.Url = get_url($scope.chooseShop._id);
+            } else {
+                $scope.Url = '';
+            }
+        }
+
+        function getSlider() {
+            DataApi.GetSlider().then(function (response) {
+                if (response.data.error_code === 0) {
+                    $scope.Sliders = response.data.sliders;
+                }
+            })
+        }
+
+        getSlider();
+
+        $scope.Create = function (data) {
+            if (data === undefined ||
+                data === '' ||
+                data.button === undefined ||
+                data.button === '' ||
+                $scope.Url === '' ||
+                $scope.slider === undefined ||
+                $scope.slider.length === 0
+            ) {
+                $scope.error = true;
+                window.scrollTo(0, 0);
+                $timeout(function () {
+                    $scope.error = false;
+                }, 1500)
+                return;
+            } else {
+                DataApi.CreateSlider($scope.chooseShop._id, data.button, $scope.Url).then(function (response) {
+                    if (response.data.error_code === 0) {
+                        DataApi.Upslider(response.data._id, $scope.slider[0]).then(function (res) {
+                            if (res.data.error_code === 0) {
+                                $scope.success = true;
+                                $scope.chooseShop = $scope.Shops[0];
+                                data.button = '';
+                                $scope.Url = '';
+                                getSlider();
+                                $timeout(function () {
+                                    $scope.success = false;
+                                }, 1500)
+                            } else {
+                                $scope.error = true;
+                            }
+                        })
+                    }
+                })
+            }
+        }
+
+        // get slider id
+        $scope.set_is_del = function () {
+            $scope.del = false;
+        }
+        $scope.get_id_slider = function(id){
+            for (var i = 0; i < $scope.Sliders.length; i++) {
+                if (id === $scope.Sliders[i]._id) {
+                    $scope.detail = $scope.Sliders[i];
+                }
+            }
+        }
+
+        // remove code
+        $scope.remove = function (id) {
+            DataApi.RemoveSlider(id).then(function (response) {
+                if (response.data.error_code === 0) {
+                    $scope.del = true;
+                    $scope.getSlider();
+                }
+            })
+        }
     })

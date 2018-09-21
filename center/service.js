@@ -1,7 +1,7 @@
 angular.module('AdminService', [])
     .factory('DataApi', function ($http) {
-        // var api_gateway_url = 'http://localhost:2018';
-        var api_gateway_url = 'http://35.240.165.98:2018';
+        var api_gateway_url = 'http://localhost:2018';
+        // var api_gateway_url = 'http://35.240.165.98:2018';
         var parameter;
         var url;
         var header = { header: { 'Conntent-Type': 'application/x-www-form-urlencoded' } };
@@ -97,7 +97,7 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/delac';
                 return $http.post(url, parameter, header);
             },
-            uploadImg: function (shop_id, avatar, cover, album, vip) {
+            uploadImg: function (shop_id, avatar, cover, album) {
 
                 var fd = new FormData();
                 var img = [];
@@ -114,19 +114,10 @@ angular.module('AdminService', [])
                     _album.push(shop_id + '-album' + (i + 1) + '.' + album[i].name.substr(album[i].name.lastIndexOf('.') + 1));
                 }
 
-                if (vip !== null) {
-                    var vip_ex = vip.name.substr(vip.name.lastIndexOf('.') + 1);
-                    fd.append('vip', vip);
-                    img_vip = shop_id + '-vip.' + vip_ex;
-                } else {
-                    img_vip = null;
-                }
-
                 img.push({
                     avatar: shop_id + '-avatar.' + avatar_ex,
                     cover: shop_id + '-cover.' + cover_ex,
                     album: _album,
-                    vip: img_vip
                 })
 
                 fd.append('img', JSON.stringify(img));
@@ -317,6 +308,40 @@ angular.module('AdminService', [])
                 fd.append('img', JSON.stringify(img));
                 url = api_gateway_url + '/imgbasic';
                 return $http.post(url, fd, _header);
+            },
+            CreateSlider: function (ShopId, Button, Url) {
+                parameter = JSON.stringify({
+                    ShopId: ShopId,
+                    Button: Button,
+                    Url: Url
+                })
+                url = api_gateway_url + '/cslider';
+                return $http.post(url, parameter, header);
+            },
+            Upslider: function (_id, slider) {
+                var fd = new FormData();
+                var img = [];
+                var slider_ex = slider.name.substr(slider.name.lastIndexOf('.') + 1);
+
+                fd.append('shopId', _id);
+                fd.append('slider', slider);
+                img.push({
+                    slider: _id + '-slider.' + slider_ex,
+                })
+                fd.append('img', JSON.stringify(img));
+                url = api_gateway_url + '/slider';
+                return $http.post(url, fd, _header);
+            },
+            GetSlider: function () {
+                url = api_gateway_url + '/getslider';
+                return $http.post(url, parameter, header);
+            },
+            RemoveSlider: function (_id) {
+                parameter = JSON.stringify({
+                    _id: _id
+                });
+                url = api_gateway_url + '/rmslider';
+                return $http.post(url, parameter, header);
             }
         }
     })
