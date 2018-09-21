@@ -267,9 +267,9 @@ coupon
             $scope.avatar = $files;
         }
 
-        $scope.get_vip = function ($files) {
-            $scope.vip = $files;
-        }
+        // $scope.get_vip = function ($files) {
+        //     $scope.vip = $files;
+        // }
 
         // update info
         $scope.update = function (data) {
