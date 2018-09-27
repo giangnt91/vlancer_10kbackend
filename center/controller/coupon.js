@@ -300,6 +300,16 @@ coupon
                             id: 1,
                             status: "Còn hạn và chưa sử dụng"
                         }]
+						
+						if(data.point !== undefined){
+							if(data.point > 0){
+								_point = data.point;
+							}else{
+								_point = 0;
+							}
+						}else{
+							_point = 0;
+						}
 
                         var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
                         // get shop id and shop name
@@ -324,6 +334,7 @@ coupon
                                 rating: 0,
                                 rfeedback: $scope.rfeedback,
                                 loyal: $scope.loyal,
+								point: _point,
                                 feedback: "",
                                 approved: "pending"
                             }
@@ -383,6 +394,16 @@ coupon
                             id: 1,
                             status: "Còn hạn và chưa sử dụng"
                         }]
+						
+						if(data.point !== undefined){
+							if(data.point > 0){
+								_point = data.point;
+							}else{
+								_point = 0;
+							}
+						}else{
+							_point = 0;
+						}
 
                         var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
                         // get shop id and shop name
@@ -407,6 +428,7 @@ coupon
                                 rating: 0,
                                 rfeedback: $scope.rfeedback,
                                 loyal: $scope.loyal,
+								point: _point,
                                 feedback: "",
                                 approved: true
                             }

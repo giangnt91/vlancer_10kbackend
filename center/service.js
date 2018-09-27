@@ -139,21 +139,6 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/avatar';
                 return $http.post(url, fd, _header);
             },
-            uVip: function (shopId, vip) {
-                var fd = new FormData();
-                var img = [];
-                var vip_ex = vip.name.substr(vip.name.lastIndexOf('.') + 1);
-
-                fd.append('shopId', shopId);
-                fd.append('vip', vip);
-                img.push({
-                    vip: shopId + '-vip.' + vip_ex,
-                })
-
-                fd.append('img', JSON.stringify(img));
-                url = api_gateway_url + '/imgvip';
-                return $http.post(url, fd, _header);
-            },
             uCover: function (shopId, cover) {
                 var fd = new FormData();
                 var img = [];
