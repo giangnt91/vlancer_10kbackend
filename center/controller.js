@@ -51,20 +51,25 @@ coupon
           $scope.user_gold = [];
           $scope.user_silver = [];
           $scope.user_normal = [];
-
+		  let x;
+		  
           $scope.all_user.forEach(function (item) {
             if (item.user_class[0].id === 4) {
               $scope.user_normal.push(item);
-              $scope.user_normal_per = ($scope.user_normal.length / $scope.all_user.length) * 100;
+			  x = ($scope.user_normal.length / $scope.all_user.length) * 100;
+              $scope.user_normal_per = parseFloat(x).toFixed(2);
             } else if (item.user_class[0].id === 3) {
               $scope.user_silver.push(item);
-              $scope.user_silver_per = ($scope.user_silver.length / $scope.all_user.length) * 100;
+			  x = ($scope.user_silver.length / $scope.all_user.length) * 100;
+              $scope.user_silver_per = parseFloat(x).toFixed(2);
             } else if (item.user_class[0].id === 2) {
               $scope.user_gold.push(item);
-              $scope.user_gold_per = ($scope.user_gold.length / $scope.all_user.length) * 100;
+			  x = ($scope.user_gold.length / $scope.all_user.length) * 100;
+              $scope.user_gold_per = parseFloat(x).toFixed(2);
             } else if (item.user_class[0].id === 1) {
               $scope.user_bk.push(item);
-              $scope.user_bk_per = ($scope.user_bk.length / $scope.all_user.length) * 100;
+			  x = ($scope.user_bk.length / $scope.all_user.length) * 100;
+              $scope.user_bk_per = parseFloat(x).toFixed(2);
             }
           });
         }

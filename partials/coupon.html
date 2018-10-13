@@ -196,14 +196,23 @@
                     <h4 class="modal-title">Coupon Mới</h4>
                 </div>
                 <div class="modal-body">
-                    <p ng-show="!accept">Bạn có chắc chắn muốn duyệt coupon của
-                        <strong class="text-primary">{{detail.the_issuer[0].name}}</strong> ?</p>
+                    <div ng-show="!accept">
+                        <div class="form-group">
+							<label for="point">Điểm Quy Đổi (mặc định là 0 điểm)</label>
+                            <input type="number" class="form-control" id="point" ng-model="data.point" placeholder="0 điểm">
+                           
+                        </div>
+					<p>
+						Bạn có chắc chắn muốn duyệt coupon của
+                        <strong class="text-primary">{{detail.the_issuer[0].name}}</strong> ?
+					</p>
+					</div>
                     <p ng-show="accept">Coupon của
                         <strong class="text-primary">{{detail.the_issuer[0].name}}</strong> đã được duyệt thành công</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="set_is_accept()">Đóng</button>
-                    <button type="button" class="btn btn-primary" ng-show="!accept" ng-click="a_coupon()">
+                    <button type="button" class="btn btn-primary" ng-show="!accept" ng-click="a_coupon(data)">
                         Chấp Nhận
                     </button>
                 </div>

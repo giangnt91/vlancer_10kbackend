@@ -21,7 +21,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-6">
+                                        <div ng-class="{'col-md-3 col-sm-6' : auth[0].role[0].id === 1 , 'col-md-4 col-sm-6' : auth[0].role[0].id !== 1}">
                                             <div class="form-group">
                                                 <label for="shop">Shop</label>
                                                 <select id="shop" class="form-control" ng-model="name.shop_info[0].shop_name" ng-options="name.shop_info[0].shop_name for name in shop_result"
@@ -29,19 +29,19 @@
                                                 <input type="text" class="form-control" ng-model="shop_detail_id" ng-if="auth[0].role[0].id === 2" disabled>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 col-sm-6">
+                                        <div ng-class="{'col-md-3 col-sm-6' : auth[0].role[0].id === 1 , 'col-md-4 col-sm-6' : auth[0].role[0].id !== 1}">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" id="cval" ng-model="data.value">
                                                 <label for="cval">Giá Trị (VNĐ)</label>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 col-sm-6">
+                                        <div ng-class="{'col-md-3 col-sm-6' : auth[0].role[0].id === 1 , 'col-md-4 col-sm-6' : auth[0].role[0].id !== 1}">
                                             <div class="form-group">
                                                 <input type="number" class="form-control" id="shopboss" ng-model="data.quantity">
                                                 <label for="shopboss">Số Lượng</label>
                                             </div>
                                         </div>
-										<div class="col-md-3 col-sm-6">
+										<div ng-class="{'col-md-3 col-sm-6' : auth[0].role[0].id === 1 , 'col-md-4 col-sm-6' : auth[0].role[0].id !== 1}" ng-show="auth[0].role[0].id === 1">
                                             <div class="form-group">
                                                 <input type="number" class="form-control" id="point" ng-model="data.point">
                                                 <label for="point">Điểm Quy Đổi</label>

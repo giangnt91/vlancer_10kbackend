@@ -117,28 +117,28 @@
 									<!--end .col -->
 									<div class="col-md-12">
 										<div class="card-body height-6">
-											<strong class="text-warning">{{user_bk.length}}</strong> Bạch Kim
+											<strong class="text-warning">{{user_bk.length}}</strong> Hạng Bạch Kim
 											<span class="pull-right text-success text-sm">{{user_bk_per}}%
 												<!-- <i class="md md-trending-up"></i> -->
 											</span>
 											<div class="progress progress-hairline">
 												<div class="progress-bar progress-bar-primary-dark" style="width:{{user_bk_per}}%"></div>
 											</div>
-											<strong class="text-warning">{{user_gold.length}}</strong> Vàng
+											<strong class="text-warning">{{user_gold.length}}</strong> Hạng Vàng
 											<span class="pull-right text-success text-sm">{{user_gold_per}}%
 												<!-- <i class="md md-trending-up"></i> -->
 											</span>
 											<div class="progress progress-hairline">
 												<div class="progress-bar progress-bar-primary-dark" style="width:{{user_gold_per}}%"></div>
 											</div>
-											<strong class="text-warning">{{user_silver.length}}</strong> Bạc
+											<strong class="text-warning">{{user_silver.length}}</strong> Hạng Bạc
 											<span class="pull-right text-success text-sm">{{user_silver_per}}%
 												<!-- <i class="md md-trending-down"></i> -->
 											</span>
 											<div class="progress progress-hairline">
 												<div class="progress-bar progress-bar-primary-dark" style="width:{{user_silver_per}}%"></div>
 											</div>
-											<strong class="text-warning">{{user_normal.length}}</strong> Thường
+											<strong class="text-warning">{{user_normal.length}}</strong> Hạng Thường
 											<span class="pull-right text-success text-sm">{{user_normal_per}}%
 												<!-- <i class="md md-trending-up"></i> -->
 											</span>
@@ -174,7 +174,7 @@
 							<!--end .card-head -->
 							<div class="card-body no-padding height-9 scroll">
 								<ul class="list divider-full-bleed">
-									<li class="tile" ng-repeat="content in all_user | orderBy:'-_id' | limitTo: 7">
+									<li class="tile" ng-repeat="content in all_user | orderBy:'-_id' | limitTo: 6">
 										<div class="tile-content">
 											<div class="tile-icon">
 												<img src="{{content.user_img}}" alt="" />

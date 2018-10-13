@@ -1,7 +1,7 @@
 angular.module('AdminService', [])
     .factory('DataApi', function ($http) {
         // var api_gateway_url = 'http://localhost:2018';
-        var api_gateway_url = 'http://35.240.165.98:2018';
+        var api_gateway_url = 'https://api.coupon10k.com';
         var parameter;
         var url;
         var header = { header: { 'Conntent-Type': 'application/x-www-form-urlencoded' } };
@@ -205,8 +205,11 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/getreac';
                 return $http.post(url, parameter, header);
             },
-            acceptCoupon: function (shop_id) {
-                parameter = JSON.stringify({ _id: shop_id });
+            acceptCoupon: function (shop_id, point) {
+                parameter = JSON.stringify({ 
+					_id: shop_id,
+					point: point
+				});
                 url = api_gateway_url + '/approvedc';
                 return $http.post(url, parameter, header);
             },
@@ -331,7 +334,7 @@ angular.module('AdminService', [])
         }
     })
     .factory('Thesocket', function (socketFactory) {
-        var api_gateway_url = 'http://35.240.165.98:2018';
+        var api_gateway_url = 'https://api.coupon10k.com';
         var socketConnection = io.connect(api_gateway_url);
         var socket = socketFactory({
             ioSocket: socketConnection
