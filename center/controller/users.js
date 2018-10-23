@@ -1,5 +1,5 @@
 coupon
-    .controller('UsersCtrl', function ($scope, $location, $window, DataApi, DTOptionsBuilder, $timeout) {
+    .controller('UsersCtrl', function ($scope, $location, $window, DataApi, DTOptionsBuilder, $timeout, Excel) {
         $scope.auth = JSON.parse(localStorage.getItem('auth'));
 
         if (!$scope.auth) {
@@ -11,7 +11,12 @@ coupon
                 $location.path('/cua-hang/trang-chu');
             }
         }
-
+		
+		$scope.exportToExcel=function(tableId){ // ex: '#my-table'
+            var exportHref=Excel.tableToExcel(tableId,'Users');
+            $timeout(function(){location.href=exportHref;},100); // trigger download
+        }
+		
         $scope.copyToClipboard = function (name) {
             var copyElement = document.createElement("textarea");
             copyElement.style.position = 'fixed';
@@ -67,6 +72,10 @@ coupon
 
                 $scope.dtOptions = DTOptionsBuilder.newOptions()
                     .withDisplayLength(10)
+                    .withOption('aLengthMenu', [
+                        [10, 20, 50, 100, 200, -1],
+                        [10, 20, 50, 100, 200, "All"]
+                    ])
                     .withOption('bLengthChange', true)
                     .withOption('iDisplayLength', 10)
             }
@@ -80,7 +89,7 @@ coupon
                     $scope.detail = $scope.all_user[i];
                 }
             }
-        }
+			}
 
         $scope.set_is_block = function () {
             $timeout(function () {

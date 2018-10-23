@@ -62,7 +62,7 @@ coupon
         }
     })
 
-    .controller('ShopCtrl', function ($scope, $location, $window, DataApi, DTOptionsBuilder, $timeout) {
+    .controller('ShopCtrl', function ($scope, $location, $window, DataApi, DTOptionsBuilder, $timeout, Excel) {
         $scope.auth = JSON.parse(localStorage.getItem('auth'));
 
         if (!$scope.auth) {
@@ -74,6 +74,11 @@ coupon
                 $location.path('/cua-hang/trang-chu');
             }
         }
+
+        $scope.exportToExcel = function (tableId) {
+			var exportHref = Excel.tableToExcel(tableId, 'Coupon');
+			$timeout(function () { location.href = exportHref; }, 100);
+		}
 
         // get all shop
         DataApi.getAllshop().then(function (response) {
@@ -91,6 +96,10 @@ coupon
 
                 $scope.dtOptions = DTOptionsBuilder.newOptions()
                     .withDisplayLength(10)
+                    .withOption('aLengthMenu', [
+                        [10, 20, 50, 100, 200, -1],
+                        [10, 20, 50, 100, 200, "All"]
+                    ])
                     .withOption('bLengthChange', true)
                     .withOption('iDisplayLength', 10)
 

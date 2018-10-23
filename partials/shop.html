@@ -16,7 +16,7 @@
                                         <i class="md md-home"></i>
                                         <span>{{shop_result.length}}</span>
                                     </strong>
-                                    <br/>
+                                    <br />
                                     <span class="opacity-50">Tổng Số Shop</span>
                                     <div class="stick-bottom-left-right">
                                         <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
@@ -39,7 +39,7 @@
                                         <i class="md md-grade"></i>
                                         {{shop_vip.length}}
                                     </strong>
-                                    <br/>
+                                    <br />
                                     <span class="opacity-50">Shop Vip</span>
                                     <div class="stick-bottom-right">
                                         <div class="height-1 sparkline-visits" data-bar-color="#e5e6e6"></div>
@@ -62,7 +62,7 @@
                                         <i class="md md-dashboard"></i>
                                         {{shop_normal.length}}
                                     </strong>
-                                    <br/>
+                                    <br />
                                     <span class="opacity-50">Shop Thường</span>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                                         <i class="md md-warning"></i>
                                         {{shop_top.length}}
                                     </strong>
-                                    <br/>
+                                    <br />
                                     <span class="opacity-50">Shop Dừng Hoạt Động</span>
                                 </div>
                             </div>
@@ -96,42 +96,63 @@
 
                 <div class="row">
 
+                    <button class="btn btn-link" ng-click="exportToExcel('#shops')">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+
                     <div class="col-lg-12">
-                        <button type="button" class="btn btn-block ink-reaction btn-primary" ng-click="go_to_shop()">Tạo Shop Mới</button>
+                        <button type="button" class="btn btn-block ink-reaction btn-primary" ng-click="go_to_shop()">Tạo
+                            Shop Mới</button>
                         <div class="table-responsive alert alert-callout no-margin tbaction" style="overflow-x:unset;">
-                            <table datatable="" ng-if="shop_result" dt-options="dtOptions" class="table table-striped table-hover">
+                            <table id="shops" datatable="" ng-if="shop_result" dt-options="dtOptions" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Tên Shop</th>
+                                        <th width="50px">STT</th>
+                                        <th>ID Shop</th>
+                                        <th hidden>ID Chủ Shop</th>
+                                        <th width="250px">Tên Shop</th>
+                                        <th hidden>Phân Loại Ngành</th>
+                                        <th hidden>Dịch Vụ Cung Cấp</th>
+                                        <th hidden>Thời Gian Hoạt Động</th>
+                                        <th hidden>Địa Chỉ</th>
+                                        <th hidden>Giới Thiệu</th>
                                         <th>Hạng</th>
-                                        <th>Ví</th>
-                                        <th>Shop Coupon</th>
-                                        <th>Server Coupon</th>
-                                        <th>Use Coupon</th>
-                                        <th>Loại</th>
+                                        <th>Tiền Trong Tài Khoản</th>
+                                        <!-- <th>Shop Coupon</th>
+                                        <th>Server Coupon</th> -->
+                                        <!-- <th>Use Coupon</th>
+                                        <th>Loại</th> -->
                                         <th>Trạng Thái</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="content in shop_result">
+                                        <td>{{$index}}</td>
                                         <td>{{content.shopId}}</td>
+                                        <td hidden>{{content.shop_boss}}</td>
                                         <td>{{content.shop_info[0].shop_name}}</td>
+                                        <td hidden>{{content.shop_info[0].kind[0].name}}</td>
+                                        <td hidden>{{content.shop_info[0].service}}</td>
+                                        <td hidden>{{content.shop_info[0].time}}</td>
+                                        <td hidden>{{content.shop_info[0].address}}</td>
+                                        <td hidden>{{content.shop_info[0].info}}</td>
                                         <td>
-                                            <span ng-show="content.shop_rank[0].id === 0">{{content.shop_rank[0].name}} </span>
-                                            <button type="button" class="btn btn-warning" ng-show="content.shop_rank[0].id === 1">
+                                            <span ng-if="content.shop_rank[0].id === 0">{{content.shop_rank[0].name}}
+                                            </span>
+                                            <button type="button" class="btn btn-warning" ng-if="content.shop_rank[0].id === 1">
                                                 {{content.shop_rank[0].name}}
                                             </button>
                                         </td>
                                         <td>{{content.wallet}}</td>
-                                        <td><span ng-if="content.shop_coupon.length > 0">{{content.shop_coupon[0].coupon.length}}</span> <span ng-if="content.shop_coupon.length === 0">0</span></td>
+                                        <!-- <td><span ng-if="content.shop_coupon.length > 0">{{content.shop_coupon[0].coupon.length}}</span> <span ng-if="content.shop_coupon.length === 0">0</span></td>
                                         <td><span ng-if="content.server_coupon.length > 0">{{content.server_coupon[0].coupon.length}}</span> <span ng-if="content.server_coupon.length === 0">0</span></td>
                                         <td>{{content.shop_use_coupon.length}}</td>
-                                        <td>{{content.shop_info[0].kind[0].name}}</td>
+                                        <td>{{content.shop_info[0].kind[0].name}}</td> -->
                                         <td>
-                                            <span ng-show="content.shop_status[0].id === 0" class="text-danger">{{content.shop_status[0].name}}</span>
-                                            <span ng-show="content.shop_status[0].id === 1" class="text-success">{{content.shop_status[0].name}}</span>
+                                            <span ng-if="content.shop_status[0].id === 0" class="text-danger">{{content.shop_status[0].name}}</span>
+                                            <span ng-if="content.shop_status[0].id === 1" class="text-success">{{content.shop_status[0].name}}</span>
                                         </td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-success ink-reaction" ng-click="go_update_shop(content._id)">

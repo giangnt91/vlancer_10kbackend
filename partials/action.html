@@ -14,7 +14,7 @@
                                         <i class="md md-dashboard"></i>
                                         <span>{{all_action.length}}</span>
                                     </strong>
-                                    <br/>
+                                    <br />
                                     <span class="opacity-50">Tổng Số Tác Vụ</span>
                                     <div class="stick-bottom-left-right">
                                         <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
@@ -32,12 +32,13 @@
                     <div class="col-md-6 col-sm-6">
                         <div class="card">
                             <div class="card-body no-padding">
-                                <div class="alert alert-callout alert-danger no-margin ink-reaction" data-toggle="modal" data-target="#create">
+                                <div class="alert alert-callout alert-danger no-margin ink-reaction" data-toggle="modal"
+                                    data-target="#create">
                                     <strong class="text-danger text-xl">
                                         <i class="md md-border-color"></i>
                                         <span>Tạo Tác Vụ</span>
                                     </strong>
-                                    <br/>
+                                    <br />
                                     <span class="opacity-50">Tạo Tác Vụ Mới</span>
                                     <div class="stick-bottom-left-right">
                                         <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
@@ -53,48 +54,59 @@
                 </div>
 
                 <div class="row">
+                    <button class="btn btn-link" ng-click="exportToExcel('#actions')">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
                     <!--end .col -->
                     <div class="col-lg-12">
                         <div class="table-responsive alert alert-callout no-margin tbaction" style="overflow-x:unset;">
                             <h2 ng-if="all_action.length === 0" class="text-center">Không có dữ liệu</h2>
-                            <table datatable="" ng-if="all_action.length > 0" dt-options="dtOptions" dt-columns="" class="table table-striped table-hover">
+                            <table id="actions" datatable="" ng-if="all_action.length > 0" dt-options="dtOptions"
+                                dt-columns="" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>STT</th>
-                                        <th>Tác Vụ ID</th>
+                                        <th width="50px">STT</th>
                                         <th>Shop ID</th>
-                                        <th>Url Tác Vụ</th>
-                                        <th hidden></th>
-                                        <th hidden></th>
-                                        <th>Số Like</th>
-                                        <th>Số Comment</th>
+                                        <th>Post ID</th>
+                                        <th hidden width="250px">URL</th>
+                                        <th>Ngày Đăng</th>
+                                        <th hidden>Ngày Hết Hạn</th>
+                                        <th hidden>Số Like Tối Đa</th>
+                                        <th hidden>Số Like Đã Nhận</th>
+                                        <th hidden>Số Comment Tối Đa</th>
+                                        <th hidden>Số Comment Đã Nhận</th>
+                                        <th>Trạng Thái</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="content in all_action | orderBy:'-_id'">
                                         <td>{{$index +1}}</td>
-                                        <td>{{content.action_id}}</td>
                                         <td>{{content.action_shop_id}}</td>
-                                        <td style="width:50px !important">{{content.action_url}}</td>
-                                        <td hidden>
-                                            {{ ( _all_action_like_comment | filter: return_like(content.action_id)).length }}
-                                        </td>
-                                        <td hidden>
-                                            {{ ( _all_action_like_comment | filter: return_com(content.action_id)).length }}
-                                        </td>
+                                        <td>{{content.action_id}}</td>
+                                        <td hidden>{{content.action_url}}</td>
+                                        <td>{{content.action_releaseday}}</td>
+                                        <td hidden>{{content.action_expiredday}}</td>
+                                        <td hidden>{{content.action_likemax}}</td>
+                                        <td hidden>{{content.action_like}}</td>
+                                        <td hidden>{{content.action_commentmax}}</td>
+                                        <td hidden>{{content.action_comment}}</td>
                                         <td>
-                                            {{like}}
-                                        </td>
-                                        <td>
-                                            {{com}}
+                                            <span ng-if="content.action_status[0].id === 1" style="color:green">Hoạt
+                                                Động</span>
+                                            <span ng-if="content.action_status[0].id === 0" style="color:red">Hết Hạn</span>
+                                            <span ng-if="content.action_status[0].id === 2" style="color:red">Ngưng
+                                                Hoạt Động</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-success ink-reaction" data-toggle="modal" data-target="#myModal" ng-click="get_id_action(content._id)">
+                                            <button type="button" class="btn btn-success ink-reaction" data-toggle="modal"
+                                                data-target="#myModal" ng-click="get_id_action(content._id)">
                                                 <i class="md md-mode-edit"></i>
                                             </button>
                                             &nbsp;
-                                            <button type="button" class="btn btn-danger ink-reaction" data-toggle="modal" data-target="#delete" ng-click="get_id_action(content._id)">
+                                            <button type="button" class="btn btn-danger ink-reaction" data-toggle="modal"
+                                                data-target="#delete" ng-click="get_id_action(content._id)">
                                                 <i class="md md-delete"></i>
                                             </button>
                                         </td>
@@ -145,6 +157,22 @@
                             <input type="text" class="form-control" id="actionUrlu" ng-model="detail.action_url">
                             <label for="actionUrlu">Tác Vụ Url</label>
                         </div>
+                        <div class="form-group">
+                            <input id="uaenday" type="text" class="form-control ran">
+                            <label>Ngày Hết Hạn</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="like" ng-model="detail.action_likemax">
+                            <label for="like">Số Like Tối Đa</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="Comment" ng-model="detail.action_commentmax">
+                            <label for="Comment">Số Comment Tối Đa</label>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" ng-model="chooseStatus" ng-options="option.name for option in ActionStatus">
+                            </select> <label for="Comment">Trạng Thái Tác Vụ</label>
+                        </div>
                     </form>
                 </div>
                 <!--end .card-body -->
@@ -192,6 +220,18 @@
                             <input type="text" class="form-control" id="actionUrl" ng-model="data.actionurl">
                             <label for="actionUrl">Tác Vụ Url</label>
                         </div>
+                        <div class="form-group">
+                            <input id="aenday" type="text" class="form-control ran">
+                            <label>Ngày Hết Hạn</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="like" ng-model="data.like">
+                            <label for="like">Số Like Tối Đa</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="Comment" ng-model="data.comment">
+                            <label for="Comment">Số Comment Tối Đa</label>
+                        </div>
                     </form>
                 </div>
                 <!--end .card-body -->
@@ -209,8 +249,8 @@
 
 
 <!-- Modal delete -->
-<div class="modal fade" id="delete" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="delete" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -233,3 +273,12 @@
         </div>
     </div>
 </div>
+
+<script src="assets/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script>
+    $('.ran').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: "dd/mm/yyyy",
+    })
+</script>

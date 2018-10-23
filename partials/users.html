@@ -96,35 +96,73 @@
 
                 <div class="row">
                     <div class="col-lg-12">
+						
+						<button class="btn btn-link" ng-click="exportToExcel('#users')">
+							  <span class="glyphicon glyphicon-share"></span>
+								Export to Excel
+							</button>
+					
                         <div class="table-responsive alert alert-callout no-margin tbaction" style="overflow-x:unset;">
                             <h2 ng-show="all_user.length === 0" class="text-center">Không có dữ liệu</h2>
-                            <table datatable="" ng-if="all_user" dt-options="dtOptions" class="table table-striped table-hover">
+                            <table id="users" datatable="" ng-if="all_user" dt-options="dtOptions" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID Thành Viên</th>
+										<th>STT</th>
+                                        <th>ID</th>
                                         <th>Họ Tên</th>
-                                        <th>Shop</th>
-                                        <th hidden>User Email</th>
-                                        <th>Hạng</th>
-                                        <th>Điểm Xấu</th>
-                                        <th>Tổng Điểm</th>
-                                        <th>Phân Quyền</th>
-                                        <th>Trạng Thái</th>
+										<th hidden>Email</th>
+										<th hidden>Ngày Sinh</th>
+										<th hidden>Số Điện Thoại</th>
+										<th hidden>Giới Tính</th>
+										<th hidden>Công Việc</th>
+										<th hidden>Tải Áp</th>
+										<th hidden>Thành Viên Tích Cực</th>
+										<th hidden>Số Lần Đăng Nhập Trong Tháng</th>
+										<th>Phân Quyền</th>
+										<th>Shop</th>
+										<th hidden>Hạng</th>
+										<th>Điểm Cộng</th>
+										<th hidden>Điểm Xấu</th>
+										<th hidden>Tổng Số Slot</th>
+										<th hidden>Số Lượng Coupon Đang Có</th>
+										<th hidden>Số Lượng Coupon Đã Dùng</th>
+										<th hidden>Số Like Post</th>
+										<th hidden>Số Comment Post</th>
+										<th>Trạng Thái</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="content in all_user | orderBy:'-_id'">
+                                        <td class="text-center">{{$index + 1}}</td>
                                         <td ng-click="copyToClipboard(content.user_id)" id="toast-custom">{{content.user_id}}</td>
                                         <td>{{content.info[0].fulname}}</td>
-                                        <td>{{content.role[0].shop_name}}</td>
-                                        <td hidden>{{content.info[0].email}}</td>
-                                        <td>{{content.user_class[0].name}}</td>
-                                        <td>{{content.point_bad}}</td>
-                                        <td>{{content.point_plus}}</td>
-                                        <td>{{content.role[0].name}}</td>
-                                        <td ng-class="{'text-success': content._status[0].id === 0, 'text-danger': content._status[0].id === 1}">{{content._status[0].name}}</td>
-                                        <td style="width: 200px">
+										<td hidden>{{content.info[0].email}}</td>
+										<td hidden>{{content.info[0].bith_day}}</td>
+										<td hidden>{{content.info[0].mobile}}</td>
+										<td hidden>{{content.info[0].sex}}</td>
+										<td hidden>{{content.info[0].work}}</td>
+										<td hidden>
+											<span ng-if="content.download === true">Có</span>
+											<span ng-if="content.download === false">Chưa</span>
+										</td>
+										<td hidden>
+											<span ng-if="content.loyal[0].Loyal === 1">Có</span>
+											<span ng-if="content.loyal[0].Loyal !== 1">Không</span>
+										</td>
+										<td hidden>{{content.loyal[0].Point}}</td>
+										<td>{{content.role[0].name}}</td>
+										<td>{{content.role[0].shop_name}}</td>
+										<td hidden>{{content.user_class[0].name}}</td>
+										<td>{{content.point_plus}}</td>
+										<td hidden>{{content.point_bad}}</td>
+										<td hidden>{{content.total_slot}}</td>
+										<td hidden>{{content.total_list_coupon.length}}</td>
+										<td hidden>{{content.use_coupon.length}}</td>
+										<td hidden>{{content.likecount}}</td>
+										<td hidden>{{content.commentcount}}</td>
+										<td ng-class="{'text-success': content._status[0].id === 0, 'text-danger': content._status[0].id === 1}">{{content._status[0].name}}</td>
+										<td style="width: 200px">
                                             <button ng-if="content._status[0].id === 0" type="button" class="btn btn-warning btn-new ink-reaction" data-toggle="modal"
                                                 data-target="#block" ng-click="get_id_user(content._id)">
                                                 <i class="md md-block"></i>
@@ -145,9 +183,9 @@
                             </table>
                         </div>
                         <!--end .table-responsive -->
-                        <!-- END DATATABLE 1 -->
+                        <!-- END DATATABLE 1 -->			
                     </div>
-                </div>
+                </div>		
             </div>
         </section>
     </div>
