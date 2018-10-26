@@ -9,16 +9,45 @@
 </style>
 <!-- BEGIN LOGIN SECTION -->
 <section class="section-account">
+    <div class="img-backdrop" style="background-image: url('https://i.imgur.com/MYQTCnm.jpg')"></div>
     <div class="spacer"></div>
     <div class="card contain-sm style-transparent">
-        <div class="card-body">
+        <!-- <div class="card-body">
             <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
-                    <br/>
-                    <span class="text-lg text-bold text-primary">WELCOME TO COUPON 10K ADMIN</span>
-                    <br/>
-                    <br/>
+                    <br />
+                    <span class="text-lg text-bold text-primary">COUPON 10K ADMIN</span>
+                    <br />
+                    <br />
+                    <div class="alert alert-warning" ng-show="_error_login">
+                        <strong>Cảnh báo!</strong> Tài khoản của bạn hiện đang bị khóa liên hệ Admin để được hỗ trợ!
+                    </div>
+
+                    <div class="alert alert-warning" ng-show="_error_reg">
+                        <strong>Cảnh báo!</strong> Tài khoản của bạn chưa được đăng ký!
+                    </div>
+
+                    <div class="alert alert-danger" ng-show="_error_role">
+                        <strong>Cảnh báo!</strong> Trang quản trị chỉ dành cho quản lý shop!
+                    </div>
+
+                    <button fb-login type="button" class="btn ink-reaction btn-primary" ng-show="_face">
+                        <i class="fa fa-facebook-f" style="margin-right: 10px;"></i>
+                        Đăng Nhập Facebook</button>
+                </div>
+              
+                <div class="col-sm-3"></div>
+            </div>
+          
+        </div> -->
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <br>
+                    <span class="text-lg text-bold text-primary">TRANG QUẢN TRỊ DÀNH CHO CỬA HÀNG</span>
+                    <br><br>
                     <div class="alert alert-warning" ng-show="_error_login">
                         <strong>Cảnh báo!</strong> Tài khoản của bạn hiện đang bị khóa liên hệ Admin để được hỗ trợ!
                     </div>
@@ -36,10 +65,17 @@
                         Đăng Nhập Facebook</button>
                 </div>
                 <!--end .col -->
-                <div class="col-sm-3"></div>
+                <div class="col-sm-5 col-sm-offset-1 text-center">
+                    <blockquote style="font-size: 15.25px; border-left: 5px solid darkgray;">
+                        <p class="text-left">Trang quản trị chỉ dành cho Chủ Shop nên ngoại trừ Chủ Shop thì những User khác sẽ không có quyền truy cập.</p>
+                        <footer>Mẹo Đăng Nhập</footer>
+                    </blockquote>
+                </div>
+                <!--end .col -->
             </div>
             <!--end .row -->
         </div>
+
         <!--end .card-body -->
     </div>
     <!--end .card -->
