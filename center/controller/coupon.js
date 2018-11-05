@@ -304,7 +304,7 @@ coupon
 								name: "Vàng"
 							}]
 						} else if (data.class === "3") {
-							_class = [{
+						_class = [{
 								id: 3,
 								name: "Bạc"
 							}]
@@ -336,9 +336,11 @@ coupon
 						}
 
 						var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
+						let checkid = md5.createHash(new Date().toLocaleString() + i);
 						// get shop id and shop name
 						for (let i = 0; i < data.quantity; i++) {
 							_coupon = {
+								checkId: checkid,
 								_id: md5.createHash(new Date().toLocaleString() + i),
 								shop_name: $scope.name_shop,
 								shop_avatar: $scope.shop_avatar,
@@ -430,9 +432,11 @@ coupon
 						}
 
 						var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
+						let checkid = md5.createHash(new Date().toLocaleString() + i);
 						// get shop id and shop name
 						for (let i = 0; i < data.quantity; i++) {
 							_coupon = {
+								checkId: checkid,
 								_id: md5.createHash(new Date().toLocaleString() + i),
 								shop_id: $scope.selected_shop.shopId,
 								shop_name: $scope.name_shop,
