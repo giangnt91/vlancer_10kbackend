@@ -336,7 +336,7 @@ coupon
 						}
 
 						var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
-						let checkid = md5.createHash(new Date().toLocaleString() + i);
+						let checkid = md5.createHash(new Date().toLocaleString());
 						// get shop id and shop name
 						for (let i = 0; i < data.quantity; i++) {
 							_coupon = {
@@ -432,7 +432,7 @@ coupon
 						}
 
 						var _info = data.info.replace(/(?:\r\n|\r|\n)/g, '<br>');
-						let checkid = md5.createHash(new Date().toLocaleString() + i);
+						let checkid = md5.createHash(new Date().toLocaleString());
 						// get shop id and shop name
 						for (let i = 0; i < data.quantity; i++) {
 							_coupon = {
