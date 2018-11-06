@@ -130,8 +130,8 @@ coupon
                 name: "Hoạt Động"
             },
             {
-                id: 2,
-                name: "Ngưng Hoạt Động"
+                id: 0,
+                name: "Hết Hạn"
             }
         ]
 

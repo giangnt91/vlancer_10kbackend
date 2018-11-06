@@ -10,7 +10,7 @@ angular.module('couponWeb', ['ngRoute', 'AdminController', 'AdminService'])
       .when("/quan-ly/thanh-vien", { templateUrl: "partials/users.html", controller: "UsersCtrl" })
       .when("/quan-ly/cua-hang", { templateUrl: "partials/shop.html", controller: "ShopCtrl" })
       .when("/quan-ly/tao-cua-hang", { templateUrl: "partials/cshop.html", controller: "ShopCtrl" })
-      .when("/quan-ly/cap-nhat-cua-hang", { templateUrl: "partials/ushop.html", controller: "UpdateCtrl" })
+      .when("/quan-ly/cap-nhat-cua-hang/:idshop", { templateUrl: "partials/ushop.html", controller: "UpdateCtrl" })
       .when("/quan-ly/duyet-coupon", { templateUrl: "partials/coupon.html", controller: "CouponCtrl" })
       .when("/quan-ly/du-lieu-coupon", { templateUrl: "partials/data.html", controller: "CouponCtrl" })
       .when("/quan-ly/tao-coupon-moi", { templateUrl: "partials/ccoupon.html", controller: "cCouponCtrl" })
@@ -32,5 +32,5 @@ angular.module('couponWeb', ['ngRoute', 'AdminController', 'AdminService'])
 
 
   .config(function (socialProvider) {
-    socialProvider.setFbKey({ appId: "1946240225621730", apiVersion: "v2.10" });
+    socialProvider.setFbKey({ appId: "1946240225621730", apiVersion: "v3.10" });
   });

@@ -235,6 +235,13 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/getshopbyboss';
                 return $http.post(url, parameter, header);
             },
+			getShopbyId: function(_id){
+				parameter = JSON.stringify({
+					_id: _id
+				});
+				url = api_gateway_url + '/getshopbyid';
+				return $http.post(url, parameter, header);
+			},
             createEmarket: function (ename, eimg) {
                 parameter = JSON.stringify({
                     ename: ename,

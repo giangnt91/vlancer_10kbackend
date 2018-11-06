@@ -1,6 +1,6 @@
 var coupon = angular.module('AdminController', ['ngRoute', 'ngTagsInput', 'AdminService', 'datatables', 'angular-md5', 'btford.socket-io', 'socialLogin']);
 coupon
-  .controller('HomeCtrl', function ($rootScope, $location, $scope, $window, DataApi, $timeout, socialLoginService) {
+  .controller('HomeCtrl', function ($rootScope, $location, $route, $templateCache, $scope, $window, DataApi, $timeout, socialLoginService) {
 
     $scope.auth = JSON.parse(localStorage.getItem('auth'));
 
@@ -12,7 +12,9 @@ coupon
       //   window.location.href = '#/manager';
       // }
       // get all shop
-      DataApi.getAllshop().then(function (response) {
+	  
+      
+	  DataApi.getAllshop().then(function (response) {
         $scope.shop_result = [];
         response.data.shop.forEach(element => {
           if (element.shop_rank.length > 0) {

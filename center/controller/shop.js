@@ -132,7 +132,7 @@ coupon
             });
             window.scrollTo(0, 0);
             // window.location.href = '#/ushop';
-            $location.path('/quan-ly/cap-nhat-cua-hang');
+            $location.path('/quan-ly/cap-nhat-cua-hang/'+ id);
         }
 
         // var formdata = new FormData();
@@ -243,28 +243,40 @@ coupon
 
         }
 
-        $scope._reload = function () {
-            window.scrollTo(0, 0);
+        // $scope._reload = function () {
+            // window.scrollTo(0, 0);
             // window.location.href = '#/shop';
-            window.location.reload(true);
-        }
+            // window.location.reload(true);
+			// $location.path('/quan-ly/cua-hang');
+        // }
 
     })
 
-    .controller('UpdateCtrl', function ($scope, $location, DataApi, $timeout) {
+    .controller('UpdateCtrl', function ($scope, $location, DataApi, $timeout, $routeParams) {
         $scope.auth = JSON.parse(localStorage.getItem('auth'));
-
+		let shopId = $routeParams.idshop;
+		
         if (!$scope.auth) {
             // window.location.href = '#/';
             // $window.location.reload(true);
         }
+		
+		function getShopByid(){
+			DataApi.getShopbyId(shopId).then(function(response){
+				if(response.data.error_code === 0){
+					$scope.shop = response.data.shop;
+				}
+			})
+		}
+		
+		getShopByid();
 
-        $scope.shop = JSON.parse(localStorage.getItem('shop'));
+        // $scope.shop = JSON.parse(localStorage.getItem('shop'));
 
         $scope._reload = function () {
             window.scrollTo(0, 0);
             // window.location.href = '#/shop';
-            $location.path('/quan-ly/cua-hang');
+            // $location.path('/quan-ly/cua-hang');
             window.location.reload(true);
         }
 

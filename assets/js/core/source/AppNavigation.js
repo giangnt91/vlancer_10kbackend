@@ -138,6 +138,7 @@
 
 			// Triger enter event
 			$('#menubar').triggerHandler('enter');
+			
 
 
 			if (menuItemClicked === false) {
@@ -162,18 +163,18 @@
 		$('body').removeClass('menubar-visible');
 		
 		// Don't close the menus when it is pinned on large viewports
-		if (materialadmin.App.minBreakpoint('md')) {
-			if ($('body').hasClass('menubar-pin')) {
-				return;
-			}
-		}
-		$('#menubar').data('expanded', false);
+		// if (materialadmin.App.minBreakpoint('md')) {
+			// if ($('body').hasClass('menubar-pin')) {
+				// return;
+			// }
+		// }
+		// $('#menubar').data('expanded', false);
 
 
-		// Never close the menu on extra small viewports
-		if (materialadmin.App.isBreakpoint('xs') === false) {
-			this._closeSubMenu($('#main-menu'));
-		}
+		// // Never close the menu on extra small viewports
+		// if (materialadmin.App.isBreakpoint('xs') === false) {
+			// this._closeSubMenu($('#main-menu'));
+		// }
 	};
 
 
