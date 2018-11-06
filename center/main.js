@@ -32,5 +32,5 @@ angular.module('couponWeb', ['ngRoute', 'AdminController', 'AdminService'])
 
 
   .config(function (socialProvider) {
-    socialProvider.setFbKey({ appId: "1946240225621730", apiVersion: "v3.10" });
+    socialProvider.setFbKey({ appId: "1946240225621730", apiVersion: "v3.2" });
   });
