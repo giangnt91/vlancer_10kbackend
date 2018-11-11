@@ -362,7 +362,8 @@ coupon
 								loyal: $scope.loyal,
 								point: _point,
 								feedback: "",
-								approved: "pending"
+								approved: "pending",
+								reviewedby: null
 							}
 							all_coupon.push(_coupon);
 						}
@@ -458,7 +459,8 @@ coupon
 								loyal: $scope.loyal,
 								point: _point,
 								feedback: "",
-								approved: true
+								approved: true,
+								reviewedby: null
 							}
 							all_coupon.push(_coupon);
 						}
