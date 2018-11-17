@@ -210,7 +210,7 @@ coupon
                         if (response.data.error_code === 0) {
                             $scope.the_error = false;
                             $timeout(function () {
-                                DataApi.uploadImg(data.shopid, $scope.avatar[0], $scope.cover[0], $scope.all_file).then(function (response) {
+                                DataApi.uploadImg(data._id, $scope.avatar[0], $scope.cover[0], $scope.all_file).then(function (response) {
                                     if (response.data.error_code === 0) {
                                         $timeout(function () {
                                             $scope.ok = true;
@@ -297,7 +297,10 @@ coupon
                 if ($scope.avatar !== undefined) {
                     if ($scope.avatar.length !== 0) {
                         // update avatar appi
-                        DataApi.uAvatar(data.shopId, $scope.avatar[0]).then(function (response) {
+                        DataApi.uAvatar(data._id, $scope.avatar[0]).then(function (response) {
+							if(response.data.error_code === 0){
+								data.shop_info[0].shop_avatar = response.data.url;
+							}
                         });
                     }
                 }
@@ -305,14 +308,20 @@ coupon
                 if ($scope.cover !== undefined) {
                     // update cover api
                     if ($scope.cover.length !== 0) {
-                        DataApi.uCover(data.shopId, $scope.cover[0]).then(function (response) {
+                        DataApi.uCover(data._id, $scope.cover[0]).then(function (response) {
+							if(response.data.error_code === 0){
+								data.shop_info[0].shop_cover = response.data.url;
+							}
                         });
                     }
                 }
 
                 if ($scope.all_file.length !== 0) {
                     // update album api
-                    DataApi.uAlbum(data.shopId, $scope.all_file).then(function (response) {
+                    DataApi.uAlbum(data._id, $scope.all_file).then(function (response) {
+						if(response.data.error_code === 0){
+							data.shop_info[0].shop_album = response.data.url;
+						}
                     });
                 }
 
@@ -359,21 +368,25 @@ coupon
                         name: "Hoạt Động"
                     }]
                 }
-
-                DataApi.updateShop(JSON.stringify(angular.copy(data))).then(function (response) {
-                    if (response.data.error_code === 0) {
-                        $timeout(function () {
-                            $scope.ok = true;
-                        }, 1500)
-                    } else {
-                        $scope.exist = true;
-                        window.scrollTo(0, 0);
-                        $timeout(function () {
-                            $scope.exist = false;
-                            $scope.$apply();
-                        }, 2500);
-                    }
-                });
+				
+				$timeout(function(){
+					DataApi.updateShop(JSON.stringify(angular.copy(data))).then(function (response) {
+						if (response.data.error_code === 0) {
+							// $timeout(function () {
+								$scope.ok = true;
+							// }, 1500)
+						} else {
+							$scope.exist = true;
+							window.scrollTo(0, 0);
+							$timeout(function () {
+								$scope.exist = false;
+								$scope.$apply();
+							}, 2000);
+						}
+					});
+				}, 2000);
+                
+				
             } else {
                 $scope.error = true;
                 $timeout(function () {
