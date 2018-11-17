@@ -214,6 +214,7 @@ coupon
                                     if (response.data.error_code === 0) {
                                         $timeout(function () {
                                             $scope.ok = true;
+											$location.path('/quan-ly/cua-hang');
                                         }, 1500)
                                     }
                                 })
