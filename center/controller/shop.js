@@ -214,7 +214,6 @@ coupon
                                     if (response.data.error_code === 0) {
                                         $timeout(function () {
                                             $scope.ok = true;
-											$location.path('/quan-ly/cua-hang');
                                         }, 1500)
                                     }
                                 })
@@ -244,12 +243,12 @@ coupon
 
         }
 
-        // $scope._reload = function () {
-            // window.scrollTo(0, 0);
+        $scope._reload = function () {
+            window.scrollTo(0, 0);
             // window.location.href = '#/shop';
             // window.location.reload(true);
-			// $location.path('/quan-ly/cua-hang');
-        // }
+			$location.path('/quan-ly/cua-hang');
+        }
 
     })
 
