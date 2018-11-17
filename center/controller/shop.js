@@ -276,8 +276,8 @@ coupon
         $scope._reload = function () {
             window.scrollTo(0, 0);
             // window.location.href = '#/shop';
-            // $location.path('/quan-ly/cua-hang');
-            window.location.reload(true);
+            $location.path('/quan-ly/cua-hang');
+            // window.location.reload(true);
         }
 
         $scope.get_cover = function ($files) {
