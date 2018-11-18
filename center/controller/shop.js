@@ -210,7 +210,7 @@ coupon
                         if (response.data.error_code === 0) {
                             $scope.the_error = false;
                             $timeout(function () {
-                                DataApi.uploadImg(data._id, $scope.avatar[0], $scope.cover[0], $scope.all_file).then(function (response) {
+                                DataApi.uploadImg(response.data.shop_id, $scope.avatar[0], $scope.cover[0], $scope.all_file).then(function (response) {
                                     if (response.data.error_code === 0) {
                                         $timeout(function () {
                                             $scope.ok = true;
@@ -246,7 +246,7 @@ coupon
         $scope._reload = function () {
             window.scrollTo(0, 0);
             // window.location.href = '#/shop';
-            // window.location.reload(true);
+            window.location.reload(true);
 			$location.path('/quan-ly/cua-hang');
         }
 
