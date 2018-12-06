@@ -166,10 +166,12 @@
 <script src="assets/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 
 <script>
+	let today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
     $('.ran').datepicker({
         autoclose: true,
         todayHighlight: true,
         format: "dd/mm/yyyy",
+		startDay: today
     })
 
     document.getElementById("cval").onkeyup = function () {
