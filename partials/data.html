@@ -29,8 +29,8 @@
                                             <th>Đơn Vị Phát Hành</th>
                                             <th>Ngày Phát Hành</th>
                                             <th>Duyệt</th>
-                                            <th>Hạn Sử Dụng</th>
-                                            <th hidden>Ngày Hết Hạn</th>
+                                            <!-- <th>Hạn Sử Dụng</th> -->
+                                            <th>Ngày Hết Hạn</th>
                                             <th>Giá Trị Coupon</th>
                                             <th hidden>Nội Dung Coupon</th>
                                             <th hidden>Hạng User Lấy Coupon</th>
@@ -60,11 +60,11 @@
                                                 <span ng-if="content.approved === pending">Đang Chờ Duyệt</span>
                                                 <span ng-if="content.approved === false">Không Được Duyệt</span>
                                             </td>
-                                            <td>
-                                                <span ng-if="content.time_expire !== '1'">{{content.time_expire}} Tháng</span>
-                                                <span ng-if="content.time_expire === '1'">{{content.time_expire}} Năm</span>
-                                            </td>
-                                            <td hidden>{{content.limit_time}}</td>
+                                            <!-- <td> -->
+                                                <!-- <span ng-if="content.time_expire !== '1'">{{content.time_expire}} Tháng</span> -->
+                                                <!-- <span ng-if="content.time_expire === '1'">{{content.time_expire}} Năm</span> -->
+                                            <!-- </td> -->
+                                            <td>{{content.limit_time}}</td>
                                             <td>{{content.value}}</td>
                                             <td hidden>{{content.coupon_info}}</td>
                                             <td hidden>{{content.class_user[0].name}}</td>

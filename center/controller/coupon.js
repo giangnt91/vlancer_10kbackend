@@ -219,38 +219,40 @@ coupon
 		}
 
 		$scope.c_cuopon = function (data) {
-			var date = new Date();
-			var _m = date.getMonth();
-			var _d = $filter('date')(date, "dd");
-			var _y = date.getFullYear();
-			if (parseInt($scope.enday) !== 1) {
-				if (_m + parseInt($scope.enday) >= 12) {
-					_y = _y + 1;
-					_m = ((_m + parseInt($scope.enday)) - 12) + 1;
-					if (_m < 10) {
-						_m = "0" + _m;
-					}
-				} else {
-					_m = (_m + parseInt($scope.enday)) + 1;
-					if (_m < 10) {
-						_m = "0" + _m;
-					}
-				}
-			} else {
-				if (_m + 12 >= 12) {
-					_y = _y + 1;
-					_m = ((_m + 12) - 12) + 1;
-					if (_m < 10) {
-						_m = "0" + _m;
-					}
-				} else {
-					_m = (_m + 12) + 1;
-					if (_m < 10) {
-						_m = "0" + _m;
-					}
-				}
-			}
-			$scope._limit = _d + '/' + _m + '/' + _y;
+			// var date = new Date();
+			// var _m = date.getMonth();
+			// var _d = $filter('date')(date, "dd");
+			// var _y = date.getFullYear();
+			// if (parseInt($scope.enday) !== 1) {
+				// if (_m + parseInt($scope.enday) >= 12) {
+					// _y = _y + 1;
+					// _m = ((_m + parseInt($scope.enday)) - 12) + 1;
+					// if (_m < 10) {
+						// _m = "0" + _m;
+					// }
+				// } else {
+					// _m = (_m + parseInt($scope.enday)) + 1;
+					// if (_m < 10) {
+						// _m = "0" + _m;
+					// }
+				// }
+			// } else {
+				// if (_m + 12 >= 12) {
+					// _y = _y + 1;
+					// _m = ((_m + 12) - 12) + 1;
+					// if (_m < 10) {
+						// _m = "0" + _m;
+					// }
+				// } else {
+					// _m = (_m + 12) + 1;
+					// if (_m < 10) {
+						// _m = "0" + _m;
+					// }
+				// }
+			// }
+			// $scope._limit = _d + '/' + _m + '/' + _y;
+			
+			var expireDay = $('#expireDay').val();
 
 			$scope._today = $filter('date')(new Date(), 'dd/MM/yyyy');
 			if ($scope.checked === true) {
@@ -280,7 +282,7 @@ coupon
 			// var enday = $('#enday').val();
 			var all_coupon = [];
 
-			if (data !== undefined && data !== null) {
+			if (data !== undefined && data !== null && expireDay !== '') {
 				if ($scope.auth[0].role[0].id === 1) {
 					$scope.shop_avatar = $scope.selected_shop.shop_info[0].shop_avatar;
 					$scope.shop_cover = $scope.selected_shop.shop_info[0].shop_cover;
@@ -288,7 +290,7 @@ coupon
 				}
 
 				if ($scope.auth[0].role[0].id === 2) {
-					if (data.class === "" || data.value === undefined || data.value === "" || data.quantity === undefined || data.quantity === "" || data.info === undefined || data.info === "" || $scope.enday === "") {
+					if (data.class === "" || data.value === undefined || data.value === "" || data.quantity === undefined || data.quantity === "" || data.info === undefined || data.info === "") {
 						window.scrollTo(0, 0);
 						$scope.error = true;
 					} else {
@@ -350,8 +352,8 @@ coupon
 								value: data.value,
 								class_user: _class,
 								release_day: $scope._today,
-								time_expire: $scope.enday,
-								limit_time: $scope._limit,
+								time_expire: null,
+								limit_time: expireDay,
 								the_issuer: _the_issuer,
 								status_coupon: _status_coupon,
 								userid_get_coupon: "",
@@ -384,7 +386,7 @@ coupon
 
 					}
 				} else {
-					if ($scope.selected_shop === undefined || data.class === undefined || data.class === "" || data.value === undefined || data.value === "" || data.quantity === undefined || data.quantity === "" || data.info === undefined || data.info === "" || $scope.enday === "") {
+					if ($scope.selected_shop === undefined || data.class === undefined || data.class === "" || data.value === undefined || data.value === "" || data.quantity === undefined || data.quantity === "" || data.info === undefined || data.info === "") {
 						window.scrollTo(0, 0);
 						$scope.error = true;
 					} else {
@@ -447,8 +449,8 @@ coupon
 								value: data.value,
 								class_user: _class,
 								release_day: $scope._today,
-								time_expire: $scope.enday,
-								limit_time: $scope._limit,
+								time_expire: null,
+								limit_time: expireDay,
 								the_issuer: _the_issuer,
 								status_coupon: _status_coupon,
 								userid_get_coupon: "",
