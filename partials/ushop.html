@@ -27,7 +27,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="shopId" ng-model="shop.shopId">
+                                                <input type="text" class="form-control" id="shopId" ng-model="shop.shopId" ng-keydown="$event.keyCode === 13 && getPageID(shop.shopId)">
                                                 <label for="shopId">Shop ID</label>
                                             </div>
                                         </div>
