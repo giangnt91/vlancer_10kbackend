@@ -33,4 +33,5 @@ angular.module('couponWeb', ['ngRoute', 'AdminController', 'AdminService'])
 
   .config(function (socialProvider) {
     socialProvider.setFbKey({ appId: "1946240225621730", apiVersion: "v3.2" });
+	socialProvider.setGoogleKey("1026230976029-cja0blpg6q54tq9pr6rru5rq9c6pducu.apps.googleusercontent.com");
   });

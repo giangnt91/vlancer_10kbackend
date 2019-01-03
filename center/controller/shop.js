@@ -76,7 +76,11 @@ coupon
 			$location.path('/cua-hang/trang-chu');
 		}
 	}
-
+	
+	DataApi.getAuthToken().then(function (response) {
+		$scope.authToken = response.data.Token;
+	})
+	
 	$scope.exportToExcel = function (tableId) {
 		var exportHref = Excel.tableToExcel(tableId, 'Coupon');
 		$timeout(function () {
@@ -151,7 +155,7 @@ coupon
 	// lấy fb pageID
 	$scope.getPageID = function (x) {
 		FB.api(x, {
-			access_token: $scope.auth[0].access_token
+			access_token: $scope.authToken
 		}, function (response) {
 			$("#shopId").val(response.id);
 			angular.element(jQuery('#shopId')).triggerHandler('input');
@@ -276,6 +280,10 @@ coupon
 		// window.location.href = '#/';
 		// $window.location.reload(true);
 	}
+	
+	DataApi.getAuthToken().then(function (response) {
+		$scope.authToken = response.data.Token;
+	})
 
 	function getShopByid() {
 		DataApi.getShopbyId(shopId).then(function (response) {
@@ -307,7 +315,7 @@ coupon
 	// lấy fb pageID
 	$scope.getPageID = function (x) {
 		FB.api(x, {
-			access_token: $scope.auth[0].access_token
+			access_token: $scope.authToken
 		}, function (response) {
 			$("#shopId").val(response.id);
 			angular.element(jQuery('#shopId')).triggerHandler('input');

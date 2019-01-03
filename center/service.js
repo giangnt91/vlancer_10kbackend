@@ -8,6 +8,10 @@ angular.module('AdminService', [])
         var _header = { transformRequest: angular.identity, headers: { 'Content-Type': undefined } };
 
         return {
+			getAuthToken: function(){
+				url = api_gateway_url + '/authtoken';
+				return $http.post(url, parameter, header);
+			},
             signIn: function (user_id, user_img) {
                 parameter = JSON.stringify({ user_id: user_id, user_img: user_img });
                 url = api_gateway_url + '/signin';
