@@ -119,7 +119,7 @@ coupon
 				}
 			})
 
-			DataApi.signIn(userDetails.uid, url_img).then(function (signin_res) {
+			DataApi.signIn(userDetails.uid, Imgurl).then(function (signin_res) {
 				var signin_result = signin_res.data;
 				if (signin_result.error_code === 2) {
 					$scope.info = [{
@@ -148,10 +148,10 @@ coupon
 					}
 
 					if ($scope.is_boss === true) {
-						DataApi.signUp(userDetails.uid, url_img, JSON.stringify($scope.info), 0, 0, 5, JSON.stringify(_class), false, 1, 0, 0, null, 5, [], null, JSON.stringify(_role), JSON.stringify(_status)).then(function (signup_res) {
+						DataApi.signUp(userDetails.uid, Imgurl, JSON.stringify($scope.info), 0, 0, 5, JSON.stringify(_class), false, 1, 0, 0, null, 5, [], null, JSON.stringify(_role), JSON.stringify(_status)).then(function (signup_res) {
 							var signup_result = signup_res.data;
 							if (signup_result.error_code === 0) {
-								DataApi.signIn(userDetails.uid, url_img).then(function (signin_res_2) {
+								DataApi.signIn(userDetails.uid, Imgurl).then(function (signin_res_2) {
 									var signin_result_2 = signin_res_2.data;
 									if (signin_result_2.error_code === 0) {
 										localStorage.setItem('auth', JSON.stringify(signin_result_2.auth));
