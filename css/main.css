@@ -153,6 +153,7 @@
     }
 	#customBtn a{
 		color: white !important;
+		text-decoration: none;
 	}
     span.label {
       font-family: serif;
@@ -194,6 +195,7 @@
     }
 	#customBtn2 a{
 		color: white !important;
+		text-decoration: none;
 	}
     span.label {
       font-family: serif;

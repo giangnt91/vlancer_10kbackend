@@ -74,8 +74,9 @@ coupon
                             value: data.value
                         }
                     }
+					let accesstrade = 'https://fast.accesstrade.com.vn/deep_link/5016815109540103667?url='+data.url+'&utm_source=USERID';
                     $timeout(function () {
-                        DataApi.createBasic($scope.chooseEmarket._id, $scope.chooseEmarket.Ename, $scope.chooseEmarket.Eimg, data.basiccode, data.url, data.nganhhang, data.info, _value, enday).then(function (response) {
+                        DataApi.createBasic($scope.chooseEmarket._id, $scope.chooseEmarket.Ename, $scope.chooseEmarket.Eimg, data.basiccode, accesstrade, data.nganhhang, data.info, _value, enday).then(function (response) {
                             if (response.data.error_code === 0) {
                                 $scope.waiting = false;
                                 $scope.success = true;
