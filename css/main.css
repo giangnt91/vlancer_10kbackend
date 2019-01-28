@@ -140,7 +140,7 @@
 
 #customBtn {
       display: inline-block;
-      background: #4285F4;
+      background: #E94341;
       color: white !important;
       width: 100%;
 	  border-radius: 3px;
@@ -166,7 +166,7 @@
 		display: inline-block;
 		vertical-align: middle;
 		width: 50px;
-		height: 42px;
+		height: 38px;
     }
     a.buttonText {
       display: inline-block;
