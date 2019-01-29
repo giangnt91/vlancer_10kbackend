@@ -154,6 +154,8 @@ coupon
         // $window.location.href = '/';
         $location.path('/');
         socialLoginService.logout();
+        FB.logout(function(response) {
+        });
         localStorage.clear();
         $window.scrollTo(0, 0);
         $window.location.reload(true);
