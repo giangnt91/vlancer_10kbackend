@@ -158,7 +158,9 @@ coupon
         });
         localStorage.clear();
         $window.scrollTo(0, 0);
-        $window.location.reload(true);
+        $timeout(()=>{
+          $window.location.reload(true);
+        }, 500)
       }
     }
   })
