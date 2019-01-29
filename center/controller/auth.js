@@ -4,6 +4,13 @@ coupon
 	$window.fbAsyncInit = function () {
 		FB.XFBML.parse();
 
+		FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				FB.logout(function(response) {
+        });
+			}
+		})
+
 		FB.Event.subscribe('auth.login', function (fbres) {
 			FB.api('/me', (rs) => {
 				$scope.fbName = rs.name;
