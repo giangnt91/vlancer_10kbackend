@@ -152,13 +152,13 @@ coupon
 
       $scope.go_login = function () {
         // $window.location.href = '/';
-        $location.path('/');
         socialLoginService.logout();
         FB.logout(function(response) {
         });
         localStorage.clear();
         $window.scrollTo(0, 0);
         $timeout(()=>{
+          $location.path('/');
           $window.location.reload(true);
         }, 500)
       }
