@@ -12,9 +12,9 @@ coupon
       //   window.location.href = '#/manager';
       // }
       // get all shop
-	  
-      
-	  DataApi.getAllshop().then(function (response) {
+
+
+      DataApi.getAllshop().then(function (response) {
         $scope.shop_result = [];
         response.data.shop.forEach(element => {
           if (element.shop_rank.length > 0) {
@@ -79,6 +79,11 @@ coupon
       //
 
       //menu
+      $scope.go_payment = () => {
+        $location.path('/quan-ly/mua-hang');
+        $window.scrollTo(0, 0);
+      }
+
       $scope.go_home = function () {
         // window.location.href = '/home';
         $location.path('/quan-ly/trang-chu');
@@ -153,11 +158,11 @@ coupon
       $scope.go_login = function () {
         // $window.location.href = '/';
         socialLoginService.logout();
-        FB.logout(function(response) {
+        FB.logout(function (response) {
         });
         localStorage.clear();
         $window.scrollTo(0, 0);
-        $timeout(()=>{
+        $timeout(() => {
           $location.path('/');
           $window.location.reload(true);
         }, 500)

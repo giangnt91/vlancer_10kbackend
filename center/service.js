@@ -1,17 +1,18 @@
 angular.module('AdminService', [])
     .factory('DataApi', function ($http) {
         // var api_gateway_url = 'http://35.240.165.98:2018';
-        var api_gateway_url = 'https://api.coupon10k.com';
+        // var api_gateway_url = 'https://api.coupon10k.com';
+        var api_gateway_url = 'http://localhost:2018';
         var parameter;
         var url;
         var header = { header: { 'Conntent-Type': 'application/x-www-form-urlencoded' } };
         var _header = { transformRequest: angular.identity, headers: { 'Content-Type': undefined } };
 
         return {
-			getAuthToken: function(){
-				url = api_gateway_url + '/authtoken';
-				return $http.post(url, parameter, header);
-			},
+            getAuthToken: function () {
+                url = api_gateway_url + '/authtoken';
+                return $http.post(url, parameter, header);
+            },
             signIn: function (user_id, user_img) {
                 parameter = JSON.stringify({ user_id: user_id, user_img: user_img });
                 url = api_gateway_url + '/signin';
@@ -217,10 +218,10 @@ angular.module('AdminService', [])
                 return $http.post(url, parameter, header);
             },
             acceptCoupon: function (shop_id, point) {
-                parameter = JSON.stringify({ 
-					_id: shop_id,
-					point: point
-				});
+                parameter = JSON.stringify({
+                    _id: shop_id,
+                    point: point
+                });
                 url = api_gateway_url + '/approvedc';
                 return $http.post(url, parameter, header);
             },
@@ -239,13 +240,13 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/getshopbyboss';
                 return $http.post(url, parameter, header);
             },
-			getShopbyId: function(_id){
-				parameter = JSON.stringify({
-					_id: _id
-				});
-				url = api_gateway_url + '/getshopbyid';
-				return $http.post(url, parameter, header);
-			},
+            getShopbyId: function (_id) {
+                parameter = JSON.stringify({
+                    _id: _id
+                });
+                url = api_gateway_url + '/getshopbyid';
+                return $http.post(url, parameter, header);
+            },
             createEmarket: function (ename, eimg) {
                 parameter = JSON.stringify({
                     ename: ename,
@@ -348,6 +349,21 @@ angular.module('AdminService', [])
                 });
                 url = api_gateway_url + '/rmslider';
                 return $http.post(url, parameter, header);
+            },
+            TransactionGetAll: () => {
+                url = api_gateway_url + '/transactiongetall';
+                return $http.get(url, header);
+            },
+            setCommission: (commission) => {
+                url = api_gateway_url + '/setcommission';
+                parameter = JSON.stringify({
+                    com: commission
+                })
+                return $http.post(url, parameter, header);
+            },
+            getCommission: () => {
+                url = api_gateway_url + '/getcommission';
+                return $http.get(url, header);
             }
         }
     })
@@ -359,16 +375,16 @@ angular.module('AdminService', [])
         });
         return socket;
     })
-	.factory('Excel',function($window){
-        var uri='data:application/vnd.ms-excel;base64,',
-            template='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
-            base64=function(s){return $window.btoa(unescape(encodeURIComponent(s)));},
-            format=function(s,c){return s.replace(/{(\w+)}/g,function(m,p){return c[p];})};
+    .factory('Excel', function ($window) {
+        var uri = 'data:application/vnd.ms-excel;base64,',
+            template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+            base64 = function (s) { return $window.btoa(unescape(encodeURIComponent(s))); },
+            format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) };
         return {
-            tableToExcel:function(tableId,worksheetName){
-                var table=$(tableId),
-                    ctx={worksheet:worksheetName,table:table.html()},
-                    href=uri+base64(format(template,ctx));
+            tableToExcel: function (tableId, worksheetName) {
+                var table = $(tableId),
+                    ctx = { worksheet: worksheetName, table: table.html() },
+                    href = uri + base64(format(template, ctx));
                 return href;
             }
         };

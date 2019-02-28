@@ -16,6 +16,7 @@ angular.module('couponWeb', ['ngRoute', 'AdminController', 'AdminService'])
       .when("/quan-ly/tao-coupon-moi", { templateUrl: "partials/ccoupon.html", controller: "cCouponCtrl" })
       .when("/quan-ly/ma-giam-gia", { templateUrl: "partials/basicode.html", controller: "BasicodeCtrl" })
       .when("/quan-ly/slider", { templateUrl: "partials/sliders.html", controller: "SliderCtrl" })
+      .when("/quan-ly/mua-hang", { templateUrl: "partials/payment.html", controller: "PaymentCtrl" })
       .when("/", { templateUrl: "partials/login.html", controller: "AuthCtrl" })
 
       // Pages for shop
