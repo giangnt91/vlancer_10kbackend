@@ -49,12 +49,15 @@ coupon
         let today = $('#enday').val();
         let todayIso = formatDayIso(today);
 
+        let encodeUrl = encodeURIComponent(data.urlCommission).replace(/'/g, "%27").replace(/"/g, "%22")
+        let accesstrade = 'https://fast.accesstrade.com.vn/deep_link/5016815109540103667?url=' + encodeUrl + '&utm_source=USERID';
+
         let hotDeal = {
           urlImage: data.urlImage,
           Info: data.info.replace(/\. /g, ".\r"),
           expiredDay: today,
           expiredDayIso: todayIso,
-          urlCommission: data.urlCommission
+          urlCommission: accesstrade
         }
 
         DataApi.createHotDeal(hotDeal).then(response => {
@@ -88,13 +91,17 @@ coupon
       let today = $('#enday2').val();
       let todayIso = formatDayIso(today);
 
+      let encodeUrl = encodeURIComponent($scope.detailHotDeal.urlCommission).replace(/'/g, "%27").replace(/"/g, "%22")
+      let accesstrade = 'https://fast.accesstrade.com.vn/deep_link/5016815109540103667?url=' + encodeUrl + '&utm_source=USERID';
+
       $scope.detailHotDeal.expiredDay = today;
       $scope.detailHotDeal.expiredDayIso = todayIso;
+      $scope.detailHotDeal.urlCommission = accesstrade;
       $scope.detailHotDeal = angular.fromJson(angular.toJson($scope.detailHotDeal));
       DataApi.updateHotDeal($scope.detailHotDeal).then(response => {
-        if(response.data.error_code === 0){
+        if (response.data.error_code === 0) {
           toastr.info('Cập nhật mã khuyến mãi thành công.');
-        }else{
+        } else {
           toastr.info('Có lỗi trong quá trình xử lý vui lòng thử lại.');
         }
       })
