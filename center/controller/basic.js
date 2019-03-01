@@ -1,18 +1,4 @@
 coupon
-    // .directive('ngFiles', ['$parse', function ($parse) {
-
-    //     function fn_link(scope, element, attrs) {
-    //         var onChange = $parse(attrs.ngFiles);
-    //         element.on('change', function (event) {
-    //             onChange(scope, { $files: event.target.files });
-    //         });
-    //     };
-
-    //     return {
-    //         link: fn_link
-    //     }
-    // }])
-
     .controller('BasicodeCtrl', function ($scope, $window, DataApi, $timeout, DTOptionsBuilder, Excel) {
         $scope.get_all = function () {
             DataApi.getAllbasic().then(function (response) {
@@ -34,9 +20,18 @@ coupon
         $scope.get_all();
 
         $scope.exportToExcel = function (tableId) {
-			var exportHref = Excel.tableToExcel(tableId, 'Basic');
-			$timeout(function () { location.href = exportHref; }, 100);
-		}
+            var exportHref = Excel.tableToExcel(tableId, 'Basic');
+            $timeout(function () { location.href = exportHref; }, 100);
+        }
+
+        //custom toastr
+        toastr.options = {
+            "closeButton": false,
+            "progressBar": true,
+            "timeOut": 2300,
+            "positionClass": "toast-top-right",
+            "onclick": null
+        }
 
         // create action
         $scope.create = function (data) {
@@ -74,8 +69,8 @@ coupon
                             value: data.value
                         }
                     }
-					let encodeUrl = encodeURIComponent(data.url).replace(/'/g,"%27").replace(/"/g,"%22")
-					let accesstrade = 'https://fast.accesstrade.com.vn/deep_link/5016815109540103667?url='+encodeUrl+'&utm_source=USERID';
+                    let encodeUrl = encodeURIComponent(data.url).replace(/'/g, "%27").replace(/"/g, "%22")
+                    let accesstrade = 'https://fast.accesstrade.com.vn/deep_link/5016815109540103667?url=' + encodeUrl + '&utm_source=USERID';
                     $timeout(function () {
                         DataApi.createBasic($scope.chooseEmarket._id, $scope.chooseEmarket.Ename, $scope.chooseEmarket.Eimg, data.basiccode, accesstrade, data.nganhhang, data.info, _value, enday).then(function (response) {
                             if (response.data.error_code === 0) {
@@ -247,6 +242,19 @@ coupon
         }
 
         get_Emarket();
+
+        // lấy chi tiết thương mại điện tử
+        $scope.updateEmarket = () => {
+            $scope.chooseEmarket = angular.fromJson(angular.toJson($scope.chooseEmarket));
+            DataApi.updateEmarket($scope.chooseEmarket).then(response => {
+                if (response.data.error_code === 0) {
+                    toastr.info('Cập nhật trang TMĐT thành công.');
+                    $scope.chooseEmarket = $scope.list_Emarket[0];
+                }else{
+                    toastr.info('Có lỗi trong quá trình xử lý vui lòng thử lại.');
+                }
+            })
+        }
     })
 
     .controller('SliderCtrl', function ($scope, $window, DataApi, $timeout, DTOptionsBuilder) {
@@ -375,7 +383,7 @@ coupon
         $scope.set_is_del = function () {
             $scope.del = false;
         }
-        $scope.get_id_slider = function(id){
+        $scope.get_id_slider = function (id) {
             for (var i = 0; i < $scope.Sliders.length; i++) {
                 if (id === $scope.Sliders[i]._id) {
                     $scope.detail = $scope.Sliders[i];

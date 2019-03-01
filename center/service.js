@@ -273,6 +273,13 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/emarket';
                 return $http.post(url, parameter, header);
             },
+            updateEmarket: (Emarket) => {
+                parameter = JSON.stringify({
+                    Emarket: Emarket
+                })
+                url = api_gateway_url + '/updateemarket';
+                return $http.post(url, parameter, header);
+            },
             getEmarket: function () {
                 url = api_gateway_url + '/getemarket';
                 return $http.post(url, parameter, header);
