@@ -84,6 +84,11 @@ coupon
         $window.scrollTo(0, 0);
       }
 
+      $scope.go_hot = () => {
+        $location.path('/quan-ly/khuyen-mai-hot');
+        $window.scrollTo(0, 0);
+      }
+
       $scope.go_home = function () {
         // window.location.href = '/home';
         $location.path('/quan-ly/trang-chu');

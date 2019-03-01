@@ -1,0 +1,249 @@
+<!-- BEGIN BASE-->
+<div id="base">
+  <!-- BEGIN CONTENT-->
+  <div id="content">
+    <section>
+      <div class="section-body">
+        <div class="row">
+          <!-- BEGIN ALERT - REVENUE -->
+          <div class="col-md-4 col-sm-6">
+            <div class="card">
+              <div class="card-body no-padding">
+                <div class="alert alert-callout alert-info no-margin ink-reaction">
+                  <strong class="text-info text-xl">
+                    <i class="md md-dashboard"></i>
+                    <span>{{listHotDeal.length}}</span>
+                  </strong>
+                  <br />
+                  <span class="opacity-50">Tổng Số Khuyễn Mãi Hot</span>
+                  <div class="stick-bottom-left-right">
+                    <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+                  </div>
+                </div>
+              </div>
+              <!--end .card-body -->
+            </div>
+            <!--end .card -->
+          </div>
+          <!--end .col -->
+          <!-- END ALERT - REVENUE -->
+
+          <!-- BEGIN ALERT - REVENUE -->
+          <div class="col-md-4 col-sm-6">
+            <div class="card">
+              <div class="card-body no-padding">
+                <div class="alert alert-callout alert-danger no-margin ink-reaction" data-toggle="modal"
+                  data-target="#create">
+                  <strong class="text-danger text-xl">
+                    <i class="md md-border-color"></i>
+                    <span>Tạo Mã</span>
+                  </strong>
+                  <br />
+                  <span class="opacity-50">Tạo Khuyến Mãi Hot</span>
+                  <div class="stick-bottom-left-right">
+                    <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+                  </div>
+                </div>
+              </div>
+              <!--end .card-body -->
+            </div>
+            <!--end .card -->
+          </div>
+          <!--end .col -->
+          <!-- END ALERT - REVENUE -->
+
+
+        </div>
+
+        <div class="row">
+          <!--end .col -->
+          <button class="btn btn-link" ng-click="exportToExcel('#hotdeal')">
+            <span class="glyphicon glyphicon-share"></span>
+            Export to Excel
+          </button>
+          <div class="col-lg-12">
+            <div class="table-responsive alert alert-callout no-margin tbaction" style="overflow-x:unset;">
+              <h2 ng-if="listHotDeal.length === 0" class="text-center">Không có dữ liệu</h2>
+              <table id="hotdeal" ng-if="listHotDeal.length > 0" datatable="" dt-options="dtOptions" dt-columns=""
+                class="table table-striped table-hover text-center">
+                <thead>
+                  <tr>
+                    <th class="text-center" width="50px">#</th>
+                    <th class="text-center">Nội Dung</th>
+                    <th class="text-center">Url Image</th>
+                    <th class="text-center">Url Khuyến Mãi</th>
+                    <th class="text-center" width="100px">Ngày Hết Hạn</th>
+                    <th class="text-center" width="150px"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="content in listHotDeal">
+                    <td>{{$index + 1}}</td>
+                    <td>
+                      {{content.Info}}
+                    </td>
+                    <td>
+                      {{content.urlImage}}
+                    </td>
+                    <td>
+                      {{content.urlCommission}}
+                    </td>
+                    <td>
+                      {{content.expiredDay}}
+                    </td>
+
+                    <td class="text-center">
+                      <button type="button" class="btn btn-success ink-reaction" data-toggle="modal"
+                      data-target="#update" ng-click="openEdit(content)">
+                        <i class="md md-mode-edit"></i>
+                      </button>
+                      &nbsp;
+                      <button type="button" class="btn btn-danger ink-reaction" data-toggle="modal"
+                        data-target="#delete" ng-click="get_id_action(content._id)">
+                        <i class="md md-delete"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--end .table-responsive -->
+            <!-- END DATATABLE 1 -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Update -->
+<div id="update" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- update action -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Cập Nhật Mã Khuyến Mãi</h4>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <form class="form">
+            <div class="form-group">
+              <input type="text" class="form-control" id="actionUrl" ng-model="detailHotDeal.urlImage">
+              <label for="actionUrl">Url Image</label>
+            </div>
+
+            <div class="form-group">
+              <label for="info">Nội Dung Khuyến Mãi</label>
+              <textarea name="info" id="info" class="form-control" rows="3" placeholder=""
+                ng-model="detailHotDeal.Info"></textarea>
+            </div>
+
+            <div class="form-group">
+              <input id="enday2" type="text" class="form-control ran">
+              <label>Ngày Hết Hạn</label>
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" id="actionUrl" ng-model="detailHotDeal.urlCommission">
+              <label for="actionUrl">Url Khuyến Mãi</label>
+            </div>
+
+          </form>
+        </div>
+        <!--end .card-body -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" ng-click="updateHotDeal(detailHotDeal)">
+          Cập Nhật
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- update -->
+
+<div id="create" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- create action-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+        <h4 class="modal-title">Tạo Mã Khuyến Mãi</h4>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <form class="form">
+            <div class="form-group">
+              <input type="text" class="form-control" id="actionUrl" ng-model="data.urlImage">
+              <label for="actionUrl">Url Image</label>
+            </div>
+
+            <div class="form-group">
+              <label for="info">Nội Dung Khuyến Mãi</label>
+              <textarea name="info" id="info" class="form-control" rows="3" placeholder=""
+                ng-model="data.info"></textarea>
+            </div>
+
+            <div class="form-group">
+              <input id="enday" type="text" class="form-control ran">
+              <label>Ngày Hết Hạn</label>
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" id="actionUrl" ng-model="data.urlCommission">
+              <label for="actionUrl">Url Khuyến Mãi</label>
+            </div>
+
+          </form>
+        </div>
+        <!--end .card-body -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" ng-click="createHotDeal(data)">
+          Tạo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal delete -->
+<div class="modal fade" id="delete" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+      </div>
+
+      <div class="modal-body">
+        <h4 ng-show="!del">Bạn có chắc chắn muốn xóa mã giảm giá
+          <strong class="text-primary">{{detail.code_coupon}}</strong> ?</h4>
+        <h4 ng-show="del">Mã giảm giá
+          <strong class="text-primary">{{detail.code_coupon}}</strong> đã được xóa thành công</h4>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="set_is_del()">Close</button>
+        <a ng-show="!del" class="btn btn-danger btn-ok" ng-click="remove(detail._id)">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+<script>
+  $('.ran').datepicker({
+    autoclose: true,
+    todayHighlight: true,
+    format: "dd/mm/yyyy",
+  })
+</script>

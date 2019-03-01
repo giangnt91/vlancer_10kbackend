@@ -247,6 +247,24 @@ angular.module('AdminService', [])
                 url = api_gateway_url + '/getshopbyid';
                 return $http.post(url, parameter, header);
             },
+            createHotDeal: (hotDeal) => {
+                parameter = JSON.stringify({
+                    hotDeal: hotDeal
+                })
+                url = api_gateway_url + '/chotdeal';
+                return $http.post(url, parameter, header);
+            },
+            getHotDeal: () => {
+                url = api_gateway_url + '/gethotdeal';
+                return $http.get(url, header);
+            },
+            updateHotDeal: (hotDeal) => {
+                parameter = JSON.stringify({
+                    hotDeal: hotDeal
+                })
+                url = api_gateway_url + '/updatehotdeal';
+                return $http.post(url, parameter, header);
+            },
             createEmarket: function (ename, eimg) {
                 parameter = JSON.stringify({
                     ename: ename,
