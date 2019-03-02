@@ -389,6 +389,28 @@ angular.module('AdminService', [])
             getCommission: () => {
                 url = api_gateway_url + '/getcommission';
                 return $http.get(url, header);
+            },
+            getGifts: () => {
+                url = api_gateway_url + '/getgifts';
+                return $http.get(url, header);
+            },
+            getGift: (_id) => {
+                url = api_gateway_url + '/getgift?_id=' + _id;
+                return $http.get(url, header);
+            },
+            addGift: (gift) => {
+                url = api_gateway_url + '/addgift';
+                parameter = JSON.stringify({
+                    gift: gift
+                })
+                return $http.post(url, parameter, header);
+            },
+            editGift: (gift) => {
+                url = api_gateway_url + '/editgift';
+                parameter = JSON.stringify({
+                    gift: gift
+                })
+                return $http.post(url, parameter, header);
             }
         }
     })

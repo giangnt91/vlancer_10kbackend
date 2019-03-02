@@ -18,6 +18,9 @@ angular.module('couponWeb', ['ngRoute', 'AdminController', 'AdminService'])
       .when("/quan-ly/slider", { templateUrl: "partials/sliders.html", controller: "SliderCtrl" })
       .when("/quan-ly/mua-hang", { templateUrl: "partials/payment.html", controller: "PaymentCtrl" })
       .when("/quan-ly/khuyen-mai-hot", { templateUrl: "partials/hotdeal.html", controller: "HotCtrl" })
+      .when("/quan-ly/danh-sach-qua-tang", { templateUrl: "partials/gift.html", controller: "GiftCtrl" })
+      .when("/quan-ly/tao-qua-tang", { templateUrl: "partials/addgift.html", controller: "GiftCtrl" })
+      .when("/quan-ly/qua-tang?:key", { templateUrl: "partials/upgift.html", controller: "UpGiftCtrl" })
       .when("/", { templateUrl: "partials/login.html", controller: "AuthCtrl" })
 
       // Pages for shop
@@ -25,7 +28,7 @@ angular.module('couponWeb', ['ngRoute', 'AdminController', 'AdminService'])
       .when('/cua-hang/quan-ly-coupon', { templateUrl: "partials/shopcoupon.html", controller: "ShopcouponCtrl" })
 
       // else 404
-      .otherwise({ redirectTo: '/' });
+      // .otherwise({ redirectTo: '/' });
 
     $locationProvider
     $locationProvider.html5Mode(true);

@@ -1,0 +1,171 @@
+<!-- BEGIN BASE-->
+<div id="base">
+
+    <!-- BEGIN CONTENT-->
+    <div id="content">
+      <section>
+        <div class="section-body">
+          <div class="row">
+            <div class="col-md-10 col-sm-12 col-md-offset-1">
+  
+              <div class="card">
+                <div class="card-head style-primary">
+                  <header>Cập Nhật Quà Tặng</header>
+                </div>
+                <div class="card-body padding">
+                  <form class="form">
+  
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                          <label for="shop">Shop</label>
+                          <select id="shop" class="form-control" ng-model="selectedShop"
+                            ng-options="name.shop_info[0].shop_name for name in shops"></select>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6">
+                          <div class="form-group">
+                            <input type="text" class="form-control" ng-model="giftDetail.giftName">
+                            <label for="cval">Tên Quà</label>
+                          </div>
+                        </div>
+                      <div class="col-md-2 col-sm-6">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="cval" ng-model="giftDetail.giftPrice">
+                          <label for="cval">Giá Trị (VNĐ)</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2 col-sm-6">
+                        <div class="form-group">
+                          <input type="number" class="form-control" id="shopboss" ng-model="giftDetail.giftTotal">
+                          <label for="shopboss">Số Lượng</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2 col-sm-6">
+                        <div class="form-group">
+                          <input type="number" class="form-control" id="point" ng-model="giftDetail.giftPoint">
+                          <label for="point">Điểm Quy Đổi</label>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="row">
+  
+                      <div class="col-md-3 col-sm-6">
+                        <form class="form">
+                          <div class="form-group">
+                            <input id="expireDay" type="text" class="form-control ran">
+                            <label>Ngày Hết Hạng</label>
+                          </div>
+                        </form>
+                      </div>
+  
+                      <div class="col-md-9 col-sm-6">
+                        <form class="form">
+                          <div class="form-group">
+                            <textarea name="address" id="address" class="form-control" rows="1" placeholder=""
+                              ng-model="giftDetail.giftAddress"></textarea>
+                            <label>Địa Chỉ</label>
+                          </div>
+                        </form>
+                      </div>
+  
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                          <label for="gift">Hình Ảnh Phần Quà</label>
+                          <tags-input ng-model="giftImage"></tags-input>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                          <label for="info">Thông Tin Quà Tặng</label>
+                          <textarea name="info" id="info" class="form-control" rows="3" placeholder=""
+                            ng-model="giftDetail.giftInfo"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+  
+                  <div class="text-center">
+                    <button type="button" class="btn btn-primary btn-lg" ng-click="giftUpdate()">
+                      Cập Nhật
+                    </button>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  
+  
+  <div id="waiting" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Tạo Coupon Mới</h4>
+        </div>
+  
+        <div class="modal-body text-center">
+          <div ng-show="!error">
+            <div class="loader" ng-show="!ok"></div>
+            <h3 ng-show="ok">Coupon đã được tạo thành công</h3>
+          </div>
+          <div class="alert alert-warning" ng-show="error">
+            <strong>Cảnh báo!</strong> Các trường phải được nhập đầy đủ để tạo Coupon mới.
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="_reload()">Đồng Ý</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- BEGIN JAVASCRIPT -->
+  
+  <script src="assets/js/core/demo/DemoFormComponents.js"></script>
+  <script src="assets/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+  
+  <script>
+    let nowDate = new Date();
+    let today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+    $('.ran').datepicker({
+      autoclose: true,
+      todayHighlight: true,
+      format: "dd/mm/yyyy",
+      startDate: today
+    })
+  
+    document.getElementById("cval").onkeyup = function () {
+      if (document.getElementById("cval").value != 0) {
+        this.value = parseFloat(this.value.replace(/,/g, ""))
+          .toFixed()
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+    }
+  
+      // function onTestChange() {
+      //     var key = window.event.keyCode;
+  
+      //     if (key === 13) {
+      //         document.getElementById("info").value = document.getElementById("info").value + "<br>";
+      //         return false;
+      //     }
+      //     else {
+      //         return true;
+      //     }
+      // }
+  </script>

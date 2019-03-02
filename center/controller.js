@@ -80,17 +80,26 @@ coupon
 
       //menu
       $scope.go_payment = () => {
+        $location.url('id', null);
         $location.path('/quan-ly/mua-hang');
         $window.scrollTo(0, 0);
       }
 
       $scope.go_hot = () => {
+        $location.url('id', null);
         $location.path('/quan-ly/khuyen-mai-hot');
+        $window.scrollTo(0, 0);
+      }
+
+      $scope.go_gift = () => {
+        $location.url('id', null);
+        $location.path('/quan-ly/danh-sach-qua-tang');
         $window.scrollTo(0, 0);
       }
 
       $scope.go_home = function () {
         // window.location.href = '/home';
+        $location.url('id', null);
         $location.path('/quan-ly/trang-chu');
         $window.scrollTo(0, 0);
         // window.location.reload(true);
@@ -99,6 +108,7 @@ coupon
 
       $scope.go_action = function () {
         // window.location.href = '/action';
+        $location.url('id', null);
         $location.path('/quan-ly/tac-vu');
         $window.scrollTo(0, 0);
         // window.location.reload(true);
@@ -106,6 +116,7 @@ coupon
 
       $scope.go_user = function () {
         // window.location.href = '/users';
+        $location.url('id', null);
         $location.path('/quan-ly/thanh-vien');
         $window.scrollTo(0, 0);
         // window.location.reload(true);
@@ -113,6 +124,7 @@ coupon
 
       $scope.go_shop = function () {
         // $window.location.href = '/shop';
+        $location.url('id', null);
         $location.path('/quan-ly/cua-hang');
         $window.scrollTo(0, 0);
         // window.location.reload(true);
@@ -120,6 +132,7 @@ coupon
 
       $scope.go_coupon = function () {
         // $window.location.href = '/coupon';
+        $location.url('id', null);
         $location.path('/quan-ly/duyet-coupon');
         $window.scrollTo(0, 0);
         // window.location.reload(true);
@@ -127,6 +140,7 @@ coupon
 
       $scope.go_data_coupon = function () {
         // $window.location.href = '/data';
+        $location.url('id', null);
         $location.path('/quan-ly/du-lieu-coupon');
         $window.scrollTo(0, 0);
         // window.location.reload(true);
@@ -134,12 +148,14 @@ coupon
 
       $scope.go_basic = function () {
         // $window.location.href = '/basic';
+        $location.url('id', null);
         $location.path('/quan-ly/ma-giam-gia');
         $window.scrollTo(0, 0);
         // window.location.reload(true);
       }
 
       $scope.go_slider = function () {
+        $location.url('id', null);
         $location.path('/quan-ly/slider');
         $window.scrollTo(0, 0);
       }
@@ -147,6 +163,7 @@ coupon
       // for shop
       $scope.go_manager = function () {
         // $window.location.href = '/manager';
+        $location.url('id', null);
         $location.path('/cua-hang/trang-chu');
         $window.scrollTo(0, 0);
         // window.location.reload(true);
@@ -154,6 +171,7 @@ coupon
 
       $scope.go_shop_coupon = function () {
         // $window.location.href = '/scoupon';
+        $location.url('id', null);
         $location.path('/cua-hang/quan-ly-coupon');
         $window.scrollTo(0, 0);
         // window.location.reload(true);
