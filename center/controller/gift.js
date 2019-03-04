@@ -157,26 +157,30 @@ coupon
       return parts[1] + '-' + iday + '-' + parts[2];
     }
 
-    // lấy danh sách cửa hàng
-    DataApi.getAllshop().then(function (response) {
-      if (response.data.error_code === 0) {
-        $scope.shops = response.data.shop;
-      }
-    });
+    getInfo = async () => {
+      // lấy danh sách cửa hàng
+      await DataApi.getAllshop().then(function (response) {
+        if (response.data.error_code === 0) {
+          $scope.shops = response.data.shop;
+        }
+      });
 
-    // lấy chi tiết quà tặng
-    DataApi.getGift(_id).then(response => {
-      if (response.data.error_code === 0) {
-        $scope.giftDetail = response.data.gift;
-        $scope.giftImage = $scope.giftDetail.giftImages;
-        $scope.shops.forEach((element, index) => {
-          if (element._id === $scope.giftDetail.giftShop[0].id) {
-            $scope.selectedShop = $scope.shops[index];
-          }
-        })
-        $('#expireDay').val($scope.giftDetail.giftExpiredDay);
-      }
-    })
+      // lấy chi tiết quà tặng
+      await DataApi.getGift(_id).then(response => {
+        if (response.data.error_code === 0) {
+          $scope.giftDetail = response.data.gift;
+          $scope.giftImage = $scope.giftDetail.giftImages;
+          $scope.shops.forEach((element, index) => {
+            if (element._id === $scope.giftDetail.giftShop[0].id) {
+              $scope.selectedShop = $scope.shops[index];
+            }
+          })
+          $('#expireDay').val($scope.giftDetail.giftExpiredDay);
+        }
+      })
+    }
+
+    getInfo();
 
     // cập nhật gift
     $scope.giftUpdate = () => {
