@@ -81,7 +81,9 @@ coupon
 
         let shop = {
           id: $scope.selectedShop._id,
-          name: $scope.selectedShop.shop_info[0].shop_name
+          name: $scope.selectedShop.shop_info[0].shop_name,
+          cover: $scope.selectedShop.shop_info[0].shop_cover,
+          avatar: $scope.selectedShop.shop_info[0].shop_avatar
         }
 
         let giftNew = {
@@ -194,7 +196,9 @@ coupon
 
       let shop = {
         id: $scope.selectedShop._id,
-        name: $scope.selectedShop.shop_info[0].shop_name
+        name: $scope.selectedShop.shop_info[0].shop_name,
+        cover: $scope.selectedShop.shop_info[0].shop_cover,
+        avatar: $scope.selectedShop.shop_info[0].shop_avatar
       }
 
       $scope.giftDetail.giftExpiredDay = expiredDay;
