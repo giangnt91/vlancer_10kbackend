@@ -107,4 +107,21 @@ coupon
       })
     }
 
+    // mở modal delete
+    $scope.openDel = (data) => {
+      $scope.detailHotDeal = data;
+    }
+
+    // xóa mã khuyến mãi
+    $scope.delHotDeal = () => {
+      DataApi.delHotDel($scope.detailHotDeal._id).then(response => {
+        if(response.data.error_code === 0){
+          toastr.info('Cập nhật mã khuyến mãi thành công.');
+          hotDealGetAll();
+        }else{
+          toastr.info('Có lỗi trong quá trình xử lý vui lòng thử lại.');
+        }
+      })
+    }
+
   })

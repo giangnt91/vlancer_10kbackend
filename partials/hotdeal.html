@@ -99,7 +99,7 @@
                       </button>
                       &nbsp;
                       <button type="button" class="btn btn-danger ink-reaction" data-toggle="modal"
-                        data-target="#delete" ng-click="get_id_action(content._id)">
+                        data-target="#delete" ng-click="openDel(content)">
                         <i class="md md-delete"></i>
                       </button>
                     </td>
@@ -220,19 +220,16 @@
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+        <h4 class="modal-title" id="myModalLabel">Xác Nhận Xóa Mã Giảm Giá</h4>
       </div>
 
       <div class="modal-body">
-        <h4 ng-show="!del">Bạn có chắc chắn muốn xóa mã giảm giá
-          <strong class="text-primary">{{detail.code_coupon}}</strong> ?</h4>
-        <h4 ng-show="del">Mã giảm giá
-          <strong class="text-primary">{{detail.code_coupon}}</strong> đã được xóa thành công</h4>
+        <h4>Bạn có chắc chắn muốn xóa mã giảm giá này ?</h4>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="set_is_del()">Close</button>
-        <a ng-show="!del" class="btn btn-danger btn-ok" ng-click="remove(detail._id)">Delete</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a ng-show="!del" class="btn btn-danger btn-ok" ng-click="delHotDeal()">Delete</a>
       </div>
     </div>
   </div>

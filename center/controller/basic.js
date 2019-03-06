@@ -248,6 +248,7 @@ coupon
             $scope.chooseEmarket = angular.fromJson(angular.toJson($scope.chooseEmarket));
             DataApi.updateEmarket($scope.chooseEmarket).then(response => {
                 if (response.data.error_code === 0) {
+                    DataApi.updateEmarketForCode($scope.chooseEmarket).then({});
                     toastr.info('Cập nhật trang TMĐT thành công.');
                     $scope.chooseEmarket = $scope.list_Emarket[0];
                 }else{
