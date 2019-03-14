@@ -8,11 +8,20 @@ coupon
       // window.location.href = '#/';
       // $window.location.reload(true);
     } else {
-      // if ($scope.auth[0].role[0].id === 2) {
-      //   window.location.href = '#/manager';
-      // }
-      // get all shop
 
+      if ($scope.auth[0].role[0].id === 1) {
+        $window.fbAsyncInit = function () {
+          //debug accessToken
+          $rootScope.isToken = true;
+          FB.api('/debug_token?input_token=' + $scope.auth[0].access_token + '&access_token=' + $scope.auth[0].access_token, (response) => {
+           if(response.error === undefined || response.error === null){
+             $rootScope.isToken = false;
+           }
+          })
+        }
+      }
+
+      // get all shop
 
       DataApi.getAllshop().then(function (response) {
         $scope.shop_result = [];

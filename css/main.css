@@ -245,3 +245,11 @@ tags-input .tags {
 .gui-controls > li{
   margin-bottom: 10px !important;
 }
+
+.accessToken{
+  color: green;
+}
+
+.accessTokenFalse{
+  color: red;
+}
