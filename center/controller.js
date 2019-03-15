@@ -15,9 +15,13 @@ coupon
 				  //debug accessToken
 				  $rootScope.isToken = true;
 				  FB.api('/debug_token?input_token=' + response.data.Token + '&access_token=' + $scope.auth[0].access_token, (response) => {
-				   if(response.data.error === undefined){
-					 $rootScope.isToken = false;
-				   }
+				   if(response.data.error !== undefined){
+					   setTimeout(function () {
+						   $scope.$apply(function () {
+							$rootScope.isToken = false;
+						   })
+						  }, 500);
+					}
 				  })
 				}
 			  }
@@ -198,7 +202,9 @@ coupon
         $window.scrollTo(0, 0);
         $timeout(() => {
           $location.path('/');
-          $window.location.reload(true);
+          $scope.$on('$locationChangeSuccess', () => {
+			$window.location.reload(true);
+		  });
         }, 500)
       }
     }

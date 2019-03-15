@@ -26,17 +26,18 @@
 					<a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
 						<img src="{{auth[0].user_img}}" alt="" />
 						<span class="profile-info text-primary" style="padding-top:7px">
-							{{auth[0].info[0].fulname}}
+							<i class="fa fa-circle {{isToken === false ? 'accessTokenFalse' : 'accessToken'}}" aria-hidden="true"></i> {{auth[0].info[0].fulname}}
 							<small class="text-danger" style="margin-top:5px">{{auth[0].role[0].name}}</small>
 						</span>
 					</a>
 					<ul class="dropdown-menu animation-dock">
-						<li ng-if="auth[0].role[0].id === 1">
-							<a href="">
-								<i class="fa fa-circle {{isToken === false ? 'accessTokenFalse' : 'accessToken'}}" aria-hidden="true"></i>
-								AccessToken
-							</a>
-						</li>
+						<!-- <li ng-if="auth[0].role[0].id === 1"> -->
+						
+							<!-- <a href=""> -->
+								<!-- <i class="fa fa-circle {{isToken === false ? 'accessTokenFalse' : 'accessToken'}}" aria-hidden="true"></i> -->
+								<!-- AccessToken -->
+							<!-- </a> -->
+						<!-- </li> -->
 						<!-- <li>
 							<a href="">My profile</a>
 						</li>
