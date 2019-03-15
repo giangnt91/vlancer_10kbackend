@@ -102,14 +102,17 @@ coupon
 								// update accessToken
 								DataApi.AccessToken(signin_result.auth[0]._id, $scope.access_token).then(function (are) {
 									if (are.data.error_code === 0) {
-										localStorage.removeItem('auth');
-										localStorage.setItem('auth', JSON.stringify([are.data.auth]));
+										localstorage.removeitem('auth');
+										localstorage.setitem('auth', json.stringify([are.data.auth]));
 									}
 								})
 
 								// window.location.href = '#/home';
 								$location.path('/quan-ly/trang-chu');
-								window.location.reload(true);
+								$scope.$on('$locationChangeSuccess', () => {
+									$window.location.reload(true);
+								});
+								// window.location.reload(true);
 							} else if (signin_result.auth[0].role[0].id === 2) {
 								// window.location.href = '#/manager';
 								$location.path('/cua-hang/trang-chu');
