@@ -9,17 +9,19 @@ coupon
       // $window.location.reload(true);
     } else {
 
-      if ($scope.auth[0].role[0].id === 1) {
-        $window.fbAsyncInit = function () {
-          //debug accessToken
-          $rootScope.isToken = true;
-          FB.api('/debug_token?input_token=' + $scope.auth[0].access_token + '&access_token=' + $scope.auth[0].access_token, (response) => {
-           if(response.error === undefined || response.error === null){
-             $rootScope.isToken = false;
-           }
-          })
-        }
-      }
+		DataServices.getAuthToken().then(function (response) {
+			 if ($scope.auth[0].role[0].id === 1) {
+				$window.fbAsyncInit = function () {
+				  //debug accessToken
+				  $rootScope.isToken = true;
+				  FB.api('/debug_token?input_token=' + response.data.Token + '&access_token=' + $scope.auth[0].access_token, (response) => {
+				   if(response.error === undefined || response.error === null){
+					 $rootScope.isToken = false;
+				   }
+				  })
+				}
+			  }
+	    })
 
       // get all shop
 
