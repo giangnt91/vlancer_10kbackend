@@ -9,7 +9,7 @@ coupon
       // $window.location.reload(true);
     } else {
 
-		DataServices.getAuthToken().then(function (response) {
+		DataApi.getAuthToken().then(function (response) {
 			 if ($scope.auth[0].role[0].id === 1) {
 				$window.fbAsyncInit = function () {
 				  //debug accessToken
