@@ -15,7 +15,7 @@ coupon
 				  //debug accessToken
 				  $rootScope.isToken = true;
 				  FB.api('/debug_token?input_token=' + response.data.Token + '&access_token=' + $scope.auth[0].access_token, (response) => {
-				   if(response.error === undefined || response.error === null){
+				   if(response.data.error === undefined){
 					 $rootScope.isToken = false;
 				   }
 				  })
